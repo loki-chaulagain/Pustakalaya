@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
 const HeroCarousel = ({ banners }: any) => {
-  console.log(banners);
   return (
     <>
       <Swiper
@@ -24,11 +23,6 @@ const HeroCarousel = ({ banners }: any) => {
                   objectFit="cover"
                   alt="img"
                 />
-
-                <div className="home_banner_text_area text-center ">
-                  <h2 className="banner_heading ">{banner.name}</h2>
-                  <p className="banner_desc">{banner.description}</p>
-                </div>
               </div>
             </SwiperSlide>
           ))}

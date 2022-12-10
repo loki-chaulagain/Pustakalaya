@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import styles from "../styles/modules/Footer.module.css";
-import Image from "next/image";
-import logo from "../assets/gem_logo.png";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -38,13 +36,7 @@ const Footer = () => {
         <div className="footer-content container">
           <div className="row px-0 mx-0">
             <div className="col-12 d-flex align-items-center justify-content-center mb-5 col-lg-4">
-              <Image
-                src={logo}
-                width={300}
-                height={120}
-                alt=" "
-                className=""
-              />
+              <h2>Logo Here</h2>
             </div>
 
             <div className="col-12 col-md-6 col-lg-4 mb-5 pb-3 d-flex flex-column">
@@ -72,13 +64,6 @@ const Footer = () => {
                       className="nav_link"
                       href="">
                       Blogs
-                    </a>
-                  </Link>
-                  <Link href={"/career"}>
-                    <a
-                      className="nav_link"
-                      href="">
-                      Careers
                     </a>
                   </Link>
                 </div>
@@ -118,6 +103,7 @@ const Footer = () => {
                 className="d-flex flex-column  flex-md-row pt-3 ">
                 <div>
                   <input
+                    autoComplete="off"
                     type="email"
                     className={`${styles.form_control}   form-control form-control-lg rounded-0  `}
                     {...register("email", { required: "Email is required" })}

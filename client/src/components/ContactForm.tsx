@@ -37,12 +37,12 @@ const ContactForm = () => {
   useEffect(() => {}, [isUpdated]);
 
   return (
-    <div className="row">
+    <div className="row ">
       <h1 className="fw-bold mt-5 mb-3 text_color_blue my_custom_text_muted">
         Get In Touch With Us <span className="text_color_red">!</span>{" "}
       </h1>
 
-      <div className="col-12 col-md-6 pb-5 pb-md-0 text_color_blue ">
+      <div className="col-12 col-md-6 pb-5 pb-md-0 text_color_blue  ">
         <h5 className="pt-4 mb-1 fw-bold my_custom_text_muted ">Email</h5>
         <div className="d-flex align-items-center gap-1">
           <AiOutlineMail />

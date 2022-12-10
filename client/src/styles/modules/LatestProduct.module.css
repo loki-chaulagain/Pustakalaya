@@ -40,11 +40,7 @@
 
 .newsletter_section {
   padding: 120px 0px;
-  background-color: var(--color-blue);
-}
-
-.news_letter_header {
-  background-image: url("../../assets//dot.png");
+  background-image: url("../../assets//bg1.webp");
   background-repeat: no-repeat;
 }
 

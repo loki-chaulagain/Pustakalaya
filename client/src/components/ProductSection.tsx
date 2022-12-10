@@ -1,21 +1,15 @@
 import React from "react";
 import styles from "../styles/modules/Product.module.css";
 import Image from "next/image";
-import SectionHeader from "./SectionHeader";
 import Link from "next/link";
 
-const FeaturedProduct = ({ featuredProducts }: any) => {
+const ProductSection = ({ products }: any) => {
   const counter = 6;
 
   return (
     <div className="container mt-5 pt-5">
       <div className="row cursor_pointer pb-5">
-        <SectionHeader
-          title="Popular Right Now"
-          description="Popular Product Right Now "
-        />
-
-        {/* {featuredProducts &&
+        {/* {products &&
           Array(counter).fill(
             <div className="col-12  col-md-6 col-xl-4  px-1 pb-4">
               <div className="product_skeleton">
@@ -25,11 +19,11 @@ const FeaturedProduct = ({ featuredProducts }: any) => {
             </div>
           )} */}
 
-        {featuredProducts &&
-          featuredProducts.map((product: any, index: any) => (
+        {products &&
+          products.map((product: any, index: any) => (
             <div
               key={index}
-              className="col-12 col-md-6 col-xl-3  px-2 pb-5">
+              className="col-12 col-md-6 col-xl-4  px-2 pb-5">
               <div className={`${styles.featured_product_item} `}>
                 <h5 className={`${styles.featured_Product_name} h5 m-0 `}>{product.name}</h5>
                 <Link href={`/product/${product.url}`}>
@@ -50,4 +44,4 @@ const FeaturedProduct = ({ featuredProducts }: any) => {
   );
 };
 
-export default FeaturedProduct;
+export default ProductSection;

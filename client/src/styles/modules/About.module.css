@@ -1,5 +1,5 @@
 .about_page_wrapper {
-  padding-top: calc(14rem + 1vh);
+  padding-top: calc(8rem + 1vh);
   padding-bottom: calc(1rem + 1vh);
 }
 
@@ -14,8 +14,8 @@
 }
 
 .testimonial_wrapper {
-  padding-top: calc(5rem + 1vh);
-  padding-bottom: calc(1rem + 1vh);
+  padding-top: calc(5rem + 10vh);
+  padding-bottom: calc(5rem + 4vh);
 }
 
 @media only screen and (min-width: 1000px) {

@@ -8,23 +8,22 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 300ms ease-in-out;
   position: relative;
-  height: 200px;
+  height: 280px;
 }
 
 .featured_product_item:hover {
-  transform: translateY(-4px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
 }
 
-.featured_product_item:hover .featured_Product_name {
-  background-color: #023047f3;
-}
+
 
 .featured_Product_name {
   position: absolute;
   bottom: 0px;
   color: var(--color-blue);
   z-index: 2;
-  background-color: #023047b0;
+  background-color: var(--color-blue);
   color: var(--color-primary);
   padding: 15px 0px;
   width: 100%;
@@ -36,5 +35,5 @@
 
 .feature_product_image_div {
   position: relative;
-  height: 200px;
+  height: 280px;
 }

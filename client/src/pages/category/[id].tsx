@@ -2,58 +2,95 @@ import React, { useEffect, useState } from "react";
 import CategoryItemProduct from "../../components/CategoryItemProduct";
 import { useRouter } from "next/router";
 import axios from "axios";
-import OurStandards from "../../components/OurStandards";
 import CategoryCarousel from "../../components/CategoryCarousel";
+import demo from "../../assets/bookDemo.jpg";
+import ProductSection from "../../components/ProductSection";
 
 export default function Id() {
-  const router = useRouter();
-  const slug = router.query.id;
+  // const router = useRouter();
+  // const slug = router.query.id;
 
-  const [category, setCategory] = useState([]);
-  const fetchSingleCategory = async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/category?url=${slug}`);
-      setCategory(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const category = [
+    {
+      image: demo,
+    },
 
-  const [standards, setStandards] = useState([]);
-  const fetchAllStandard = async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/standard`);
+    {
+      image: demo,
+    },
+  ];
 
-      setStandards(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const catProducts = [
+    {
+      image: demo,
+      name: "1",
+      description: "1111",
+    },
 
-  const [catProducts, setCatProducts] = useState([]);
-  const fetchCategoryProduct = async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product?slug=${slug}`);
-      setCatProducts(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    {
+      image: demo,
+      name: "2",
+      description: "222222",
+    },
 
-  useEffect(() => {
-    fetchAllStandard();
-    fetchCategoryProduct();
-    fetchSingleCategory();
-  }, [router.query.id]);
+    {
+      image: demo,
+      name: "3",
+      description: "3333333333",
+    },
+
+    {
+      image: demo,
+      name: "4",
+      description: "44444444",
+    },
+
+    {
+      image: demo,
+      name: "1",
+      description: "1111",
+    },
+
+    {
+      image: demo,
+      name: "2",
+      description: "222222",
+    },
+
+    {
+      image: demo,
+      name: "3",
+      description: "3333333333",
+    },
+
+    {
+      image: demo,
+      name: "4",
+      description: "44444444",
+    },
+  ];
+
+  // const [catProducts, setCatProducts] = useState([]);
+  // const fetchCategoryProduct = async () => {
+  //   try {
+  //     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product?slug=${slug}`);
+  //     setCatProducts(res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchCategoryProduct();
+  // }, [router.query.id]);
 
   return (
     <div className="">
       <CategoryCarousel category={category} />
-      <CategoryItemProduct
-        catProducts={catProducts}
-        slug={slug}
+      <ProductSection
+        products={catProducts}
+        // slug={slug}
       />
-      {/* <OurStandards standards={standards} /> */}
     </div>
   );
 }

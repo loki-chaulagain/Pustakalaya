@@ -30,11 +30,11 @@ const Newsletter = () => {
   };
 
   return (
-    <div className={`${styles.newsletter_section} `}>
+    <div className={`${styles.newsletter_section}  `}>
       <div className="container news_letter_padding">
-        <div className={`${styles.news_letter_header} d-flex flex-column  text_color_white align-items-center text-center`}>
-          <h1>Join to our Newsletter</h1>
-          <p>If you never miss our interesting news by joining our newsletter.</p>
+        <div className={`${styles.news_letter_header} text_muted_heading d-flex flex-column  text_color_white align-items-center text-center`}>
+          <h1 >Join to our Newsletter</h1>
+          <p className="text-muted">If you never miss our interesting news by joining our newsletter.</p>
         </div>
         <form
           onSubmit={handleSubmit(createSubscriber)}

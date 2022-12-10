@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import styles from "../styles/modules/Nav.module.css";
+import styles from "../../styles/modules/Nav.module.css";
 import Image from "next/image";
-import logo from "../assets/gem_logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImHome } from "react-icons/im";
 import { HiInformationCircle } from "react-icons/hi";
@@ -11,7 +10,7 @@ import { HiTemplate } from "react-icons/hi";
 import { GrMail } from "react-icons/gr";
 import { FaSitemap } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import demo from "../assets/bookDemo.jpg";
+import demo from "../../assets/bookDemo.jpg";
 
 const Navbar = () => {
   // const [categories, setCategories] = useState([]);
@@ -60,12 +59,7 @@ const Navbar = () => {
   return (
     <nav className={`${styles.nav_bar} navbar navbar-expand-lg`}>
       <div className="container">
-        <Image
-          src={logo}
-          width={150}
-          height={60}
-          alt=" "
-        />
+        <h2>Logo</h2>
 
         <div
           className="d-flex gap-5 d-none d-lg-block "

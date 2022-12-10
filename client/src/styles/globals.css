@@ -203,7 +203,6 @@ p {
   position: absolute;
   content: "";
   inset: 0;
-  background-color: #02304744;
 }
 
 .home_banner_text_area {
@@ -335,7 +334,7 @@ button:focus {
 }
 
 .global_para {
-  font-size: 20px !important;
+  font-size: 18px !important;
 }
 
 .section_header_img_div {
