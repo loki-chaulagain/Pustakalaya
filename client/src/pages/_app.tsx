@@ -6,7 +6,8 @@ import Navbar from "../components/nav/Navbar";
 import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Announcement from "../components/Announcement";
+import { store } from "../app/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -14,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <>
+    <Provider store={store}>
       <Navbar />
       <Component {...pageProps} />
       <Footer />
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         pauseOnHover
         theme="dark"
       />
-    </>
+    </Provider>
   );
 }
 

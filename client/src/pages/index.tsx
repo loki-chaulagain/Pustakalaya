@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import AboutProductSection from "../components/home/AboutProductSection";
 import HeroCarousel from "../components/home/HeroCarousel";
 import Newsletter from "../components/Newsletter";
-import demo from "../assets/bookDemo.jpg";
+import demo from "../assets/book.avif";
 import ProductSection from "../components/ProductSection";
 import AboutProductSection2 from "../components/home/AboutProductSection2";
 

@@ -333,10 +333,6 @@ button:focus {
   color: #fefffeaf;
 }
 
-.global_para {
-  font-size: 18px !important;
-}
-
 .section_header_img_div {
   position: relative;
   height: 30px;
@@ -471,4 +467,21 @@ button:focus {
 
 .z999 {
   z-index: 999;
+}
+
+/* =============================================================== */
+.global_para {
+  font-size: 20px !important;
+}
+
+.color_blue {
+  color: #219ebc;
+}
+
+.color_orange {
+  color: #fb8500;
+}
+
+.text_color {
+  color: #1a1910bd !important;
 }

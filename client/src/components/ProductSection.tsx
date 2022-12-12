@@ -24,16 +24,20 @@ const ProductSection = ({ products }: any) => {
             <div
               key={index}
               className="col-12 col-md-6 col-xl-4  px-2 pb-5">
-              <div className={`${styles.featured_product_item} `}>
-                <h5 className={`${styles.featured_Product_name} h5 m-0 `}>{product.name}</h5>
+              <div className={`${styles.product_item} `}>
+                <div className={`${styles.product_content}  `}>
+                  <p className="h4 text_color">Lorem, ipsum dolor.</p>
+                  <p className="text-muted text_color fw-semibold"> <span className="color_orange">Author</span> : Binod Dhami</p>
+                  <p className="text-muted text_color fw-semibold"><span className="color_orange">Published Year</span> :2022</p>
+                </div>
                 <Link href={`/product/${product.url}`}>
-                  <div className={`${styles.feature_product_image_div}`}>
-                    <Image
-                      src={product.image}
-                      layout="fill"
-                      objectFit="cover"
-                      alt="img"
-                    />
+                  <div className={`${styles.image_only_div}`}>
+                  <Image
+                    src={product.image}
+                    layout="fill"
+                    objectFit="cover"
+                    alt="img"
+                  />
                   </div>
                 </Link>
               </div>
