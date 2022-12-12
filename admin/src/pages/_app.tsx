@@ -15,20 +15,20 @@ function MyApp({ Component, pageProps }: AppProps) {
     import("bootstrap");
   }, []);
 
-  const [accessToken, setAccessToken] = useState<any>(null);
-  useEffect(() => {
-    if (typeof window != "undefined") {
-      const accessToken = localStorage.getItem("accessToken");
-      setAccessToken(accessToken);
-    }
-  }, []);
+  // const [accessToken, setAccessToken] = useState<any>(null);
+  // useEffect(() => {
+  //   if (typeof window != "undefined") {
+  //     const accessToken = localStorage.getItem("accessToken");
+  //     setAccessToken(accessToken);
+  //   }
+  // }, []);
 
 
 
   return (
     <>
       <MiscellaneousContextProvider>
-        {accessToken ? (
+        {/* {accessToken ? ( */}
           <div className="customBg h100">
             <Topbar />
             <div className="row">
@@ -41,9 +41,9 @@ function MyApp({ Component, pageProps }: AppProps) {
               </div>
             </div>
           </div>
-        ) : (
+        {/* ) : (
           <LoginBox />
-        )}
+        )} */}
       </MiscellaneousContextProvider>
       <ToastContainer
         position="top-right"

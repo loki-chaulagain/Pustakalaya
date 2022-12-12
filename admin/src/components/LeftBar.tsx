@@ -46,11 +46,7 @@ const navItems = [
     route: "/product",
   },
 
-  {
-    icon: <BsPeopleFill />,
-    label: "Partners",
-    route: "/partner",
-  },
+ 
 
   {
     icon: <GiKnightBanner />,
@@ -58,17 +54,8 @@ const navItems = [
     route: "/eventBanner",
   },
 
-  {
-    icon: <MdOutlineHomeRepairService />,
-    label: "Our Services",
-    route: "/ourServices",
-  },
 
-  {
-    icon: <ImPriceTags />,
-    label: "standard",
-    route: "/standard",
-  },
+  
 
   {
     icon: <RiProfileLine />,
@@ -81,11 +68,7 @@ const navItems = [
     route: "/blog",
   },
 
-  {
-    icon: <RiProfileLine />,
-    label: "Vacancy",
-    route: "/vacancy",
-  },
+  
 
   {
     icon: <IoMdSettings />,
