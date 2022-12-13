@@ -3,7 +3,7 @@ import TableHeading from "../TableHeading";
 import { MdDelete } from "react-icons/md";
 import { format } from "timeago.js";
 
-export default function SubscriberTable({ deleteSubscriber, subscribers }: any) {
+export default function SubscriberTable({ removeSubscriber, subscribers }: any) {
   return (
     <>
       <div className="d-flex align-items-center  ">
@@ -33,7 +33,7 @@ export default function SubscriberTable({ deleteSubscriber, subscribers }: any) 
                   <td>
                     <MdDelete
                       className="delete_button_icon"
-                      onClick={() => deleteSubscriber(subscriber._id)}
+                      onClick={() => removeSubscriber(subscriber._id)}
                       aria-label="delete"
                     />
                   </td>

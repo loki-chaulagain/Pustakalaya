@@ -6,7 +6,7 @@ import axios from "axios";
 import Image from "next/image";
 import ImageUploading from "react-images-uploading";
 
-export default function AddReviewDialog({ setIsUpdated }) {
+export default function AddReviewDialog() {
   const { handleClickOpen, handleClose, open, createSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
 
   const {
@@ -34,7 +34,6 @@ export default function AddReviewDialog({ setIsUpdated }) {
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/review`, formData);
       // ;
-      setIsUpdated(1);
       handleClose();
       createSuccess();
       reset();

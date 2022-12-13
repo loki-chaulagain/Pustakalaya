@@ -1,52 +1,27 @@
-import React, { useEffect, useState, useContext } from "react";
-import { MiscellaneousContext } from "../../../context/MiscellaneousContext";
+import React, { useEffect } from "react";
 import BannerTable from "../../components/banner/BannerTable";
 import Header from "../../components/Header";
-import { useSession } from "next-auth/react";
-import Api from "../../../service/Api.js";
-let CallApi = new Api();
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { fetchAllBanner, deleteBanner } from "../../app/banner/bannerAction";
 
 export default function Banner() {
-  // const session = useSession();
-  // console.log(session);
+  const { loading, banners, error } = useAppSelector((state: any) => state.banner);
+  const dispatch = useAppDispatch();
 
-  const { deleteSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
-  const [isUpdated, setIsUpdated] = useState(0);
-  const [banners, setBanners] = useState([]);
-
-  const fetchAllBanner = async () => {
-    try {
-      let res = await CallApi.fetchData(`banner`);
-      res && setBanners(res);
-      setIsUpdated(1);
-    } catch (error) {
-      console.log(error);
-    }
+  const removeBanner = (id: any) => {
+    dispatch(deleteBanner(id));
   };
 
   useEffect(() => {
-    fetchAllBanner();
-  }, [isUpdated]);
-
-  const deleteBanner = async (id: any) => {
-    try {
-      let res = await CallApi.deleteData(`banner/${id}`);
-      setIsUpdated(2);
-      deleteSuccess();
-      console.log("Delete success");
-    } catch (error) {
-      console.log(error);
-      somethingWentWrong();
-    }
-  };
+    dispatch(fetchAllBanner());
+  }, [dispatch]);
 
   return (
     <>
       <Header pageTitle={"Banner"} />
       <BannerTable
-        setIsUpdated={setIsUpdated}
         banners={banners}
-        deleteBanner={deleteBanner}
+        removeBanner={removeBanner}
       />
     </>
   );

@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
 import { MiscellaneousContextProvider } from "../../context/MiscellaneousContext";
 import LoginBox from "../components/LoginBox";
+import { store } from "../app/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -23,24 +25,23 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   }
   // }, []);
 
-
-
   return (
-    <>
+    <Provider store={store}>
+      {/* <> */}
       <MiscellaneousContextProvider>
         {/* {accessToken ? ( */}
-          <div className="customBg h100">
-            <Topbar />
-            <div className="row">
-              <div className=" col-2 customLeftBar">
-                <LeftAppBar />
-              </div>
+        <div className="customBg h100">
+          <Topbar />
+          <div className="row">
+            <div className=" col-2 customLeftBar">
+              <LeftAppBar />
+            </div>
 
-              <div className="col-10 right_side_bg">
-                <Component {...pageProps} />
-              </div>
+            <div className="col-10 right_side_bg">
+              <Component {...pageProps} />
             </div>
           </div>
+        </div>
         {/* ) : (
           <LoginBox />
         )} */}
@@ -57,7 +58,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         pauseOnHover
         theme="dark"
       />
-    </>
+    </Provider>
+    // </>
   );
 }
 

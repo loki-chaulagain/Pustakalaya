@@ -1,48 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
-import { MiscellaneousContext } from "../../../context/MiscellaneousContext";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import MailTable from "../../components/mail/MailTable";
-import Api from "../../../service/Api.js";
-let CallApi = new Api();
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { deleteMail, fetchAllMail } from "../../app/mail/mailAction";
 
 function Mail() {
-  const { deleteSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
-  const [isUpdated, setIsUpdated] = useState(0);
+  const { loading, mails, error } = useAppSelector((state: any) => state.mail);
 
-  const deleteMail = async (id: any) => {
-    try {
-      let res = await CallApi.deleteData(`contact/${id}`);
-      setIsUpdated(1);
-      deleteSuccess();
-      console.log("Mail deleted success");
-    } catch (error) {
-      console.log(error);
-      somethingWentWrong();
-    }
-  };
-
-  const [mails, setMails] = useState([]);
-  const fetchAllMail = async () => {
-    try {
-      let res = await CallApi.fetchData(`contact`);
-      setMails(res);
-      setIsUpdated(0);
-    } catch (error) {
-      console.log(error);
-      somethingWentWrong();
-    }
-  };
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchAllMail();
-  }, [isUpdated]);
+    dispatch(fetchAllMail());
+  }, [dispatch]);
+
+  const removeMail = (id: any) => {
+    dispatch(deleteMail(id));
+  };
 
   return (
     <>
       <Header pageTitle={"Mails"} />
       <MailTable
         mails={mails}
-        deleteMail={deleteMail}
+        removeMail={removeMail}
       />
     </>
   );

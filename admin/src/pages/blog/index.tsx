@@ -1,41 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import BlogTable from "../../components/blog/BlogTable";
 import Header from "../../components/Header";
-import axios from "axios";
-import { MiscellaneousContext } from "../../../context/MiscellaneousContext";
-import Api from "../../../service/Api.js";
-let CallApi = new Api();
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { deleteBlog, fetchAllBlog } from "../../app/blog/blogAction";
 
 function Blog() {
-  const { deleteSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
-  const [isUpdated, setIsUpdated] = useState(0);
-  const [blogs, setBlogs] = useState([]);
-
-  const fetchAllBlogs = async () => {
-    try {
-      let res = await CallApi.fetchData(`blog`);
-
-      setBlogs(res);
-      setIsUpdated(1);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { loading, blogs, error } = useAppSelector((state: any) => state.blog);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchAllBlogs();
-  }, [isUpdated]);
+    dispatch(fetchAllBlog());
+  }, [dispatch]);
 
-  const deleteBlog = async (id: any) => {
-    try {
-      let res = await CallApi.deleteData(`blog/${id}`);
-      setIsUpdated(4);
-      deleteSuccess();
-      console.log("Review deleted success");
-    } catch (error) {
-      console.log(error);
-      somethingWentWrong();
-    }
+  const removeBlog = (id: any) => {
+    dispatch(deleteBlog(id));
   };
 
   return (
@@ -43,7 +21,7 @@ function Blog() {
       <Header pageTitle={"Blogs"} />
       <BlogTable
         blogs={blogs}
-        deleteBlog={deleteBlog}
+        removeBlog={removeBlog}
       />
     </>
   );

@@ -1,8 +1,6 @@
 import React from "react";
 import { Grid, Typography, Toolbar, Box, AppBar, Stack, Avatar, Chip } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import MailDialogBox from "./MailDialogBox";
-import NotificationDialogBox from "./NotificationDialogBox";
 import { MailContextProvider } from "../../context/MailContext";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/router";
@@ -35,8 +33,6 @@ export default function Topbar() {
               <Grid
                 container
                 gap={2}>
-                <MailDialogBox />
-                <NotificationDialogBox />
                 <Stack
                   direction="row"
                   spacing={1}>

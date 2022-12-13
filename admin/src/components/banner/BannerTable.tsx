@@ -6,12 +6,12 @@ import { MdDelete } from "react-icons/md";
 import AddBannerDialog from "./AddBannerDialog";
 import Image from "next/image";
 
-export default function BannerTable({ banners, deleteBanner, setIsUpdated }: any) {
+export default function BannerTable({ banners, removeBanner }: any) {
   return (
     <>
       <div className="d-flex align-items-center  ">
         <TableHeading heading={"All Banners"} />
-        <AddBannerDialog setIsUpdated={setIsUpdated} />
+        <AddBannerDialog  />
       </div>
 
       <div className="customCard mt-2 mb-5 ">
@@ -64,7 +64,7 @@ export default function BannerTable({ banners, deleteBanner, setIsUpdated }: any
                     <div>
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={() => deleteBanner(banner._id)}
+                        onClick={() => removeBanner(banner._id)}
                         aria-label="delete"
                       />
                     </div>

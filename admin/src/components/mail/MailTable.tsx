@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
-export default function MailTable({ mails, deleteMail }: any) {
+export default function MailTable({ mails, removeMail }: any) {
   return (
     <>
       <div className="customCard mt-2 ">
@@ -41,7 +41,7 @@ export default function MailTable({ mails, deleteMail }: any) {
 
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={(e) => deleteMail(mail._id)}
+                        onClick={() => removeMail(mail._id)}
                         aria-label="delete"
                       />
                     </div>

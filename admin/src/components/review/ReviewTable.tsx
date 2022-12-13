@@ -6,10 +6,10 @@ import AddReviewDialog from "./AddReviewDialog";
 import Image from "next/image";
 
 
-export default function ReviewTable({ deleteReview, reviews, setIsUpdated }: any) {
+export default function ReviewTable({ removeReview, reviews }: any) {
   return (
     <>
-      <AddReviewDialog setIsUpdated={setIsUpdated} />
+      <AddReviewDialog />
       <div className="customCard mt-2 ">
         <table className="table  ">
           <thead>
@@ -56,7 +56,7 @@ export default function ReviewTable({ deleteReview, reviews, setIsUpdated }: any
 
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={() => deleteReview(review._id)}
+                        onClick={() => removeReview(review._id)}
                         aria-label="delete"
                       />
                     </div>
