@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/modules/Product.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import demo from "../assets/book.avif";
 
 const ProductSection = ({ products }: any) => {
   const counter = 6;
@@ -33,7 +34,7 @@ const ProductSection = ({ products }: any) => {
                 <Link href={`/product/${product.url}`}>
                   <div className={`${styles.image_only_div}`}>
                   <Image
-                    src={product.image}
+                    src={demo}
                     layout="fill"
                     objectFit="cover"
                     alt="img"

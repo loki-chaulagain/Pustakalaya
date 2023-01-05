@@ -1,13 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import styles from "../styles/modules/Footer.module.css";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { useCreateSubscriberMutation } from "../redux/api/globalApi";
 
 const Footer = () => {
-  const mailSendSuccess = () => toast.success("We will notify our updates");
-  const sendMailError = () => toast.error("Something Went Wrong");
+  const [createSubscriber] = useCreateSubscriberMutation();
 
   const {
     register,
@@ -16,17 +14,14 @@ const Footer = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const handleAllField = watch();
+  const handleAllField: any = watch();
 
-  const createSubscriber = async () => {
+  const handleCreateSubscriber = async () => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/subscriber`, handleAllField);
-      console.log("Form has been submitted");
-      mailSendSuccess();
+      createSubscriber(handleAllField);
       reset();
     } catch (error) {
       console.log(error);
-      sendMailError();
     }
   };
 
@@ -95,15 +90,14 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-6 col-lg-4">
+            <form
+              onSubmit={handleSubmit(handleCreateSubscriber)}
+              className="col-12 col-md-6 col-lg-4">
               <h4 className={`${styles.footer_column_heading}`}>Subscribe Us</h4>
               <p className="pt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate labore fugit voluptate officiis accusantium?</p>
-              <form
-                onSubmit={handleSubmit(createSubscriber)}
-                className="d-flex flex-column  flex-md-row pt-3 ">
+              <div className="d-flex flex-column  flex-md-row pt-3 ">
                 <div>
                   <input
-                    autoComplete="off"
                     type="email"
                     className={`${styles.form_control}   form-control form-control-lg rounded-0  `}
                     {...register("email", { required: "Email is required" })}
@@ -116,9 +110,9 @@ const Footer = () => {
                   className={`${styles.subscribe_button} px-3 py-3  py-md-0 mt-3 mt-md-0`}>
                   Subscribe
                 </button>
-              </form>
+              </div>
               {errors.email && <p className="form_hook_error fw-semibold d-none d-sm-block">{`${errors.email.message}`}</p>}
-            </div>
+            </form>
           </div>
         </div>
 

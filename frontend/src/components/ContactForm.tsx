@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/modules/Contact.module.css";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiClock } from "react-icons/fi";
 import { BiPhone } from "react-icons/bi";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { useCreateContactMutation } from "../redux/api/globalApi";
 
 const ContactForm = () => {
-  const mailSendSuccess = () => toast.success("We will notify our updates");
-  const sendMailError = () => toast.error("Something Went Wrong");
-  const [isUpdated, setIsUpdated] = useState(false);
+  const [createContact] = useCreateContactMutation();
+
   const {
     register,
     handleSubmit,
@@ -19,22 +17,12 @@ const ContactForm = () => {
     formState: { errors },
     reset,
   } = useForm();
-  let handleAllField = watch();
+  let handleAllField: any = watch();
 
   const sendMail = async () => {
-    try {
-      const res = await axios.post (`${process.env.NEXT_PUBLIC_API_URL}/contact`, handleAllField);
-      mailSendSuccess();
-      console.log("Mail send successfully");
-      setIsUpdated(true);
-      reset();
-    } catch (error) {
-      console.log(error);
-      sendMailError();
-    }
+    createContact(handleAllField);
+    reset();
   };
-
-  useEffect(() => {}, [isUpdated]);
 
   return (
     <div className="row ">
@@ -99,7 +87,7 @@ const ContactForm = () => {
           <input
             autoComplete="false"
             className={`${styles.contact_input_field} form-control form-control-lg px-2`}
-            type="text"
+            type="number"
             placeholder="Phone"
             aria-label=".form-control-lg example"
             {...register("phone", { required: "Phone is required" })}

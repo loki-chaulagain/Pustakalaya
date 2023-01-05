@@ -13,20 +13,6 @@ import { IoMdClose } from "react-icons/io";
 import demo from "../../assets/bookDemo.jpg";
 
 const Navbar = () => {
-  // const [categories, setCategories] = useState([]);
-  // const fetchAllCategory = async () => {
-  //   try {
-  //     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/category`);
-  //     setCategories(res.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchAllCategory();
-  // }, []);
-
   const categories = [
     {
       image: demo,
@@ -110,14 +96,6 @@ const Navbar = () => {
               type="button"
               className={`${route == "about" ? styles.nav_active : styles.nav_link} px-3`}>
               About
-            </a>
-          </Link>
-
-          <Link href={"/blog"}>
-            <a
-              type="button"
-              className={`${route == "about" ? styles.nav_active : styles.nav_link} px-3`}>
-              Blogs
             </a>
           </Link>
 

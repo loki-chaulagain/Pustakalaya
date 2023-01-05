@@ -4,9 +4,8 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import Navbar from "../components/nav/Navbar";
 import Footer from "../components/Footer";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { store } from "../app/store";
+import { store } from "../redux/store/store";
 import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -19,18 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Navbar />
       <Component {...pageProps} />
       <Footer />
-      <ToastContainer
-        position="top-right"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </Provider>
   );
 }
