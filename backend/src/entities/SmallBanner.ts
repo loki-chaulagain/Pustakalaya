@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn } from "typeorm";
 
 @Entity()
 export class SmallBanner extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({ type: String })
@@ -13,7 +13,4 @@ export class SmallBanner extends BaseEntity {
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;
-
-  @UpdateDateColumn({ type: Date })
-  updatedAt!: Date;
 }

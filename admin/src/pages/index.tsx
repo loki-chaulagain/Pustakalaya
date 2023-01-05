@@ -1,11 +1,8 @@
-import { Box, Stack } from "@mui/material";
-import { useContext } from "react";
-// import { MiscellaneousContext } from "../../context/MiscellaneousContext";
+import { Stack } from "@mui/material";
 import CardLarge from "../components/dashboard/CardLarge";
 import CardMedium from "../components/dashboard/CardMedium";
 import CardSmall from "../components/dashboard/CardSmall";
 import Header from "../components/Header";
-// import { getSession, useSession } from "next-auth/react";
 
 export default function Home() {
 

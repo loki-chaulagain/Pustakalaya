@@ -4,7 +4,7 @@ import { SmallBanner } from "../entities/SmallBanner";
 
 export const getSmallBanners = async (req: Request, res: Response) => {
   try {
-    const smallBanners = await AppDataSource.manager.find(SmallBanner);
+    const smallBanners = await AppDataSource.manager.find(SmallBanner,{take:5});
     return res.status(200).json(smallBanners);
   } catch (error: any) {
     return res.status(500).json({ message: error.message });

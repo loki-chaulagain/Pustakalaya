@@ -1,35 +1,32 @@
 import type { AppProps } from "next/app";
-import "../../styles/globals.css";
+import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LeftAppBar from "../components/LeftBar";
 import Topbar from "../components/Topbar";
 import { useEffect } from "react";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
-import { MiscellaneousContextProvider } from "../../context/MiscellaneousContext";
 import LoginBox from "../components/LoginBox";
-import { store } from "../app/store";
 import { Provider } from "react-redux";
+import { store } from "../redux/store/store";
+import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     import("bootstrap");
   }, []);
 
-  // const [accessToken, setAccessToken] = useState<any>(null);
-  // useEffect(() => {
-  //   if (typeof window != "undefined") {
-  //     const accessToken = localStorage.getItem("accessToken");
-  //     setAccessToken(accessToken);
-  //   }
-  // }, []);
+  const [accessToken, setAccessToken] = useState<any>(null);
+  useEffect(() => {
+    if (typeof window != "undefined") {
+      const accessToken = localStorage.getItem("accessToken");
+      setAccessToken(accessToken);
+    }
+  }, []);
 
   return (
     <Provider store={store}>
-      {/* <> */}
-      <MiscellaneousContextProvider>
-        {/* {accessToken ? ( */}
+      {accessToken ? (
         <div className="customBg h100">
           <Topbar />
           <div className="row">
@@ -42,24 +39,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             </div>
           </div>
         </div>
-        {/* ) : (
-          <LoginBox />
-        )} */}
-      </MiscellaneousContextProvider>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      ) : (
+        <LoginBox />
+      )}
+      <Toaster />
     </Provider>
-    // </>
   );
 }
 

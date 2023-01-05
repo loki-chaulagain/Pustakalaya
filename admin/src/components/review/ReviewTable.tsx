@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import AddReviewDialog from "./AddReviewDialog";
 import Image from "next/image";
+import { useDeleteReviewMutation, useGetReviewsQuery } from "../../redux/api/globalApi";
 
+export default function ReviewTable() {
+  const { data: reviews } = useGetReviewsQuery();
+  const [deleteReview] = useDeleteReviewMutation();
 
-export default function ReviewTable({ removeReview, reviews }: any) {
+  const [page, setPage] = useState(0);
+  const handleNext = () => {
+    setPage(page + 1);
+  };
+
+  const handlePrev = () => {
+    setPage(page - 1);
+  };
+  console.log(page);
+
   return (
     <>
       <AddReviewDialog />
@@ -56,7 +69,7 @@ export default function ReviewTable({ removeReview, reviews }: any) {
 
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={() => removeReview(review._id)}
+                        onClick={() => deleteReview(review.id)}
                         aria-label="delete"
                       />
                     </div>
@@ -65,6 +78,27 @@ export default function ReviewTable({ removeReview, reviews }: any) {
               ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="d-flex justify-content-end pe-5 mt-2">
+        <nav aria-label="Page navigation ">
+          <ul className="pagination">
+            <li className="page-item">
+              <a
+                onClick={handlePrev}
+                className="page-link rounded-0 h6 cp">
+                Previous
+              </a>
+            </li>
+            <li className="page-item">
+              <a
+                onClick={handleNext}
+                className="page-link rounded-0 h6 px-4 cp">
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );

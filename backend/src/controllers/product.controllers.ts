@@ -4,7 +4,7 @@ import { Product } from "../entities/Product";
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
-    const results = await AppDataSource.getRepository(Product).find();
+    const results = await AppDataSource.manager.find(Product, { take: 5 });
     return res.status(200).json(results);
   } catch (error: any) {
     return res.status(500).json({ message: error.message });

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn,  } from "typeorm";
 
 @Entity()
 export class Banner extends BaseEntity {
@@ -6,19 +6,13 @@ export class Banner extends BaseEntity {
   id!: number;
 
   @Column({ type: String })
-  name!: string;
+  title!: string;
 
   @Column({ type: String })
   description!: string;
 
   @Column({ type: Number })
   categoryId!: number;
-
-  @Column({ type: Number })
-  priceNow!: number;
-
-  @Column({ type: Number })
-  pricePrevious!: number;
 
   @Column({ type: String })
   image!: string;
@@ -28,7 +22,4 @@ export class Banner extends BaseEntity {
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;
-
-  @UpdateDateColumn({ type: Date })
-  updatedAt!: Date;
 }

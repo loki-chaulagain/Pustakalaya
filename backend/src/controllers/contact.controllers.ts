@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
 
 export const getContacts = async (req: Request, res: Response) => {
   try {
-    const results = await AppDataSource.getRepository(Contact).find();
+    const results = await AppDataSource.manager.find(Contact, { take: 5 });
     return res.status(200).json(results);
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
@@ -37,9 +37,9 @@ export const createContact = async (req: Request, res: Response) => {
       });
 
       let info = await transporter.sendMail({
-        from: "Techno Store",
+        from: "Book Store",
         to: "lokendrachaulagain803@gmail.com",
-        subject: "Message From Techno Store",
+        subject: "Message From Book Store",
         html: `
            <p>Full Name : ${req.body.fullName}</p>
            <p>Email : ${req.body.email}</p>

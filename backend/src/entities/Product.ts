@@ -36,14 +36,8 @@ export class Product extends BaseEntity {
   isHotSale!: boolean;
 
   @Column({ default: false, type: Boolean })
-  isRecent!: boolean;
-
-  @Column({ default: false, type: Boolean })
   isOutOfStock!: boolean;
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;
-
-  @UpdateDateColumn({ type: Date })
-  updatedAt!: Date;
 }

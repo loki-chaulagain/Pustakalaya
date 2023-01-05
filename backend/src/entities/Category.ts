@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn } from "typeorm";
 
 @Entity()
 export class Category extends BaseEntity {
@@ -16,7 +16,4 @@ export class Category extends BaseEntity {
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;
-
-  @UpdateDateColumn({ type: Date })
-  updatedAt!: Date;
 }
