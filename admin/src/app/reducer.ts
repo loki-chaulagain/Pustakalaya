@@ -11,5 +11,5 @@ export const reducer = {
   mail: mailReducer,
   blog: blogReducer,
   review: reviewReducer,
-eventBanner: eventBannerReducer,
+  eventBanner: eventBannerReducer,
 };
