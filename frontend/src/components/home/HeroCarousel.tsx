@@ -25,7 +25,6 @@ const HeroCarousel = ({ banners }: any) => {
                   alt="img"
                 />
               </div>
-              <h1>{banner.title}</h1>
             </SwiperSlide>
           ))}
       </Swiper>

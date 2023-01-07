@@ -485,3 +485,64 @@ button:focus {
 .text_color {
   color: #1a1910bd !important;
 }
+
+.register_input {
+  box-shadow: none !important;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+.register_button {
+  background-color: orange !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+.check_box {
+  border-color: orange !important;
+}
+.check_box:checked {
+  background-color: orange !important;
+  border-color: orange !important;
+}
+
+.forgot {
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+}
+
+.forgot:hover {
+  color: orange;
+}
+
+.inside_input {
+  border: none !important;
+  outline: none !important;
+}
+
+.cp_hover {
+  cursor: pointer !important;
+  transition: all 200ms ease-in-out;
+}
+.cp_hover:hover {
+  color: orange !important;
+}
+
+.rectangular_product_card {
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  transition: all 200ms ease-in-out;
+}
+
+.rectangular_product_card:hover {
+  border: 1px solid blue;
+}
+.favourite_cat {
+  transition: all 200ms ease-in-out;
+  padding-left: 15px;
+  cursor: pointer;
+}
+.favourite_cat:hover {
+  background-color: rgba(128, 128, 128, 0.205);
+}

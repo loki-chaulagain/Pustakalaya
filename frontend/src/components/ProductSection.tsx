@@ -3,8 +3,11 @@ import styles from "../styles/modules/Product.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import demo from "../assets/book.avif";
+import { useGetCategoriesQuery } from "../redux/api/globalApi";
 
-const ProductSection = ({ products }: any) => {
+const ProductSection = () => {
+  const { data: categories } = useGetCategoriesQuery();
+
   const counter = 6;
 
   return (
@@ -20,25 +23,30 @@ const ProductSection = ({ products }: any) => {
             </div>
           )} */}
 
-        {products &&
-          products.map((product: any, index: any) => (
+        {categories &&
+          categories.map((product: any, index: any) => (
             <div
               key={index}
               className="col-12 col-md-6 col-xl-4  px-2 pb-5">
               <div className={`${styles.product_item} `}>
                 <div className={`${styles.product_content}  `}>
                   <p className="h4 text_color">Lorem, ipsum dolor.</p>
-                  <p className="text-muted text_color fw-semibold"> <span className="color_orange">Author</span> : Binod Dhami</p>
-                  <p className="text-muted text_color fw-semibold"><span className="color_orange">Published Year</span> :2022</p>
+                  <p className="text-muted text_color fw-semibold">
+                    {" "}
+                    <span className="color_orange">Author</span> : Binod Dhami
+                  </p>
+                  <p className="text-muted text_color fw-semibold">
+                    <span className="color_orange">Published Year</span> :2022
+                  </p>
                 </div>
                 <Link href={`/product/${product.url}`}>
                   <div className={`${styles.image_only_div}`}>
-                  <Image
-                    src={demo}
-                    layout="fill"
-                    objectFit="cover"
-                    alt="img"
-                  />
+                    <Image
+                      src={demo}
+                      layout="fill"
+                      objectFit="cover"
+                      alt="img"
+                    />
                   </div>
                 </Link>
               </div>

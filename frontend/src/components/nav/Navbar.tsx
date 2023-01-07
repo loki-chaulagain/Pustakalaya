@@ -11,33 +11,10 @@ import { GrMail } from "react-icons/gr";
 import { FaSitemap } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import demo from "../../assets/bookDemo.jpg";
+import { useGetCategoriesQuery } from "../../redux/api/globalApi";
 
 const Navbar = () => {
-  const categories = [
-    {
-      image: demo,
-      name: "Horror",
-      description: "1111",
-    },
-
-    {
-      image: demo,
-      name: "Thriller",
-      description: "222222",
-    },
-
-    {
-      image: demo,
-      name: "Romance",
-      description: "3333333333",
-    },
-
-    {
-      image: demo,
-      name: "Drama",
-      description: "44444444",
-    },
-  ];
+  const { data: categories } = useGetCategoriesQuery();
 
   const router = useRouter();
   const route = router.pathname.split("/")[1];
@@ -78,7 +55,7 @@ const Navbar = () => {
                       <div className={`${styles.nav_category_item_img}  `}>
                         <Image
                           // src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}/${category.image}`}
-                          src={category.image}
+                          src={demo}
                           layout="fill"
                           objectFit="cover"
                           alt="img"
@@ -90,6 +67,13 @@ const Navbar = () => {
                 ))}
             </div>
           </div>
+          <Link href={"/about"}>
+            <a
+              type="button"
+              className={`${route == "about" ? styles.nav_active : styles.nav_link} px-3`}>
+              Favourite
+            </a>
+          </Link>
 
           <Link href={"/about"}>
             <a

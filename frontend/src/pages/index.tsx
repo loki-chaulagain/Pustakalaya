@@ -13,7 +13,7 @@ export default function Index() {
   return (
     <div className="matter">
       <HeroCarousel banners={banners} />
-      <ProductSection products={products} />
+      <ProductSection  />
       <AboutProductSection />
       <ProductSection products={products} />
       <Newsletter />
