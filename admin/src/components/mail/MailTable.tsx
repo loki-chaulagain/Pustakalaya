@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import { format } from "timeago.js";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { useDeleteContactMutation, useGetContactsQuery } from "../../redux/api/globalApi";
 import TableHeading from "../TableHeading";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function MailTable() {
   const { data: mails } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
+  const { deleteSuccessToast } = useContext(GlobalContext);
+
+  const handleDelete = async (id: any) => {
+    try {
+      deleteContact(id);
+      deleteSuccessToast();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [page, setPage] = useState(0);
   const handleNext = () => {
@@ -59,7 +70,7 @@ export default function MailTable() {
 
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={(e) => deleteContact(mail.id)}
+                        onClick={() => handleDelete(mail.id)}
                         aria-label="delete"
                       />
                     </div>
@@ -75,14 +86,14 @@ export default function MailTable() {
             <li className="page-item">
               <a
                 onClick={handlePrev}
-                className="page-link rounded-0 h6 cp">
+                className="page-link rounded-0 h6 next_prev cp">
                 Previous
               </a>
             </li>
             <li className="page-item">
               <a
                 onClick={handleNext}
-                className="page-link rounded-0 h6 px-4 cp">
+                className="page-link rounded-0 h6 next_prev px-4 cp">
                 Next
               </a>
             </li>

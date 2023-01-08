@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Grid, Dialog, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useCreateSmallBannerMutation } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function AddEventBannerDialog() {
+  const [createSmallBanner] = useCreateSmallBannerMutation();
+  const { createSuccessToast } = useContext(GlobalContext);
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,11 +23,17 @@ export default function AddEventBannerDialog() {
     formState: { errors },
     reset,
   } = useForm();
-  const handleAllField = watch();
+  const handleAllField: any = watch();
 
-  const createEventBanner = async () => {
-    useCreateSmallBannerMutation(handleAllField);
-    reset();
+  const createSmallBannerHandler = async () => {
+    try {
+      createSmallBanner(handleAllField);
+      createSuccessToast();
+      reset();
+      handleClose()
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -44,7 +54,7 @@ export default function AddEventBannerDialog() {
         onClose={handleClose}>
         <form
           className="customCard p-3 overflow_hidden"
-          onSubmit={handleSubmit(createEventBanner)}>
+          onSubmit={handleSubmit(createSmallBannerHandler)}>
           <h4>Create New Event Banner </h4>
           <p className="customPrimaryTxtColor">To subscribe to this website, please enter your email address here. We will send updates occasionally.</p>
 

@@ -29,7 +29,7 @@ export default function EditMailTable() {
                 type="text"
                 className=" input_field_style form-control form-control-lg mb-2  border-0  rounded-0"
                 name="name"
-                value={singleMail.fullName}
+                value={singleMail.name}
                 placeholder="Sender Name"
               />
             </div>

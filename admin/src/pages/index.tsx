@@ -5,7 +5,6 @@ import CardSmall from "../components/dashboard/CardSmall";
 import Header from "../components/Header";
 
 export default function Home() {
-
   return (
     <Stack spacing={2}>
       <Header />
@@ -65,21 +64,3 @@ export default function Home() {
     </Stack>
   );
 }
-
-// protected route
-// export async function getServerSideProps({ req }:any) {
-//   const session = await getSession({ req });
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/signin",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: { session },
-//   };
-// }

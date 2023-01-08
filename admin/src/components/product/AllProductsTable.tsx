@@ -42,13 +42,13 @@ export default function AllProductsTable() {
               <th scope="col">Image</th>
               <th scope="col">Category</th>
               <th scope="col">Description</th>
+              <th scope="col">Author</th>
               <th scope="col">Price Now</th>
               <th scope="col">Price Previous</th>
-              <th scope="col">Active</th>
-              <th scope="col">BestSeller</th>
+              <th scope="col">Most Selling</th>
               <th scope="col">Featured</th>
+              <th scope="col">Latest</th>
               <th scope="col">Hot Sale</th>
-              <th scope="col">In Stock</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -65,19 +65,17 @@ export default function AllProductsTable() {
                   <td>{product.description}</td>
                   <td>{product.priceNow}</td>
                   <td>{product.pricePrevious}</td>
-                  {product.isActive == 1 && <td className="active_status_green_color">Yes</td>}
-                  {product.isActive == 0 && <td className="active_status_red_color">No</td>}
-                  {product.isBestSeller == 1 && <td className="active_status_green_color">Yes</td>}
-                  {product.isBestSeller == 0 && <td className="active_status_red_color">No</td>}
+                  {product.isMostSelling == 1 && <td className="active_status_green_color">Yes</td>}
+                  {product.isMostSelling == 0 && <td className="active_status_red_color">No</td>}
 
                   {product.isFeatured == 1 && <td className="active_status_green_color">Yes</td>}
                   {product.isFeatured == 0 && <td className="active_status_red_color">No</td>}
 
+                  {product.isLatestProduct == 1 && <td className="active_status_green_color">Yes</td>}
+                  {product.isLatestProduct == 0 && <td className="active_status_red_color">No</td>}
+
                   {product.isHotSale == 1 && <td className="active_status_green_color">Yes</td>}
                   {product.isHotSale == 0 && <td className="active_status_red_color">No</td>}
-
-                  {product.isOutOfStock == 1 && <td className="active_status_green_color">Yes</td>}
-                  {product.isOutOfStock == 0 && <td className="active_status_red_color">No</td>}
 
                   <td>
                     <div className="d-flex ">
@@ -106,14 +104,14 @@ export default function AllProductsTable() {
             <li className="page-item">
               <a
                 onClick={handlePrev}
-                className="page-link rounded-0 h6 cp">
+                className="page-link rounded-0 h6 next_prev cp">
                 Previous
               </a>
             </li>
             <li className="page-item">
               <a
                 onClick={handleNext}
-                className="page-link rounded-0 h6 px-4 cp">
+                className="page-link rounded-0 h6 next_prev px-4 cp">
                 Next
               </a>
             </li>

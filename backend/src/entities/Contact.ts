@@ -6,17 +6,17 @@ export class Contact extends BaseEntity {
   id!: number;
 
   @Column({ type: String })
-  fullName!: string;
+  name!: string;
 
   @Column({ type: String })
   email!: string;
+
+  @Column({ type: String })
+  phone!: string;
 
   @Column({ type: String })
   message!: string;
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;
-
-  @UpdateDateColumn({ type: Date })
-  updatedAt!: Date;
 }

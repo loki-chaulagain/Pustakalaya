@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TableHeading from "../TableHeading";
 import { MdDelete } from "react-icons/md";
 import { format } from "timeago.js";
 import { useDeleteSubscriberMutation, useGetSubscribersQuery } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function SubscriberTable() {
   const { data: subscribers } = useGetSubscribersQuery();
   const [deleteSubscriber] = useDeleteSubscriberMutation();
+  const { deleteSuccessToast } = useContext(GlobalContext);
+
+  const handleDelete = async (id: any) => {
+    try {
+      deleteSubscriber(id);
+      deleteSuccessToast();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [page, setPage] = useState(0);
   const handleNext = () => {
@@ -47,7 +58,7 @@ export default function SubscriberTable() {
                   <td>
                     <MdDelete
                       className="delete_button_icon"
-                      onClick={() => deleteSubscriber(subscriber.id)}
+                      onClick={() => handleDelete(subscriber.id)}
                       aria-label="delete"
                     />
                   </td>
@@ -63,14 +74,14 @@ export default function SubscriberTable() {
             <li className="page-item">
               <a
                 onClick={handlePrev}
-                className="page-link rounded-0 h6 cp">
+                className="page-link rounded-0 h6 next_prev cp">
                 Previous
               </a>
             </li>
             <li className="page-item">
               <a
                 onClick={handleNext}
-                className="page-link rounded-0 h6 px-4 cp">
+                className="page-link rounded-0 h6 next_prev px-4 cp">
                 Next
               </a>
             </li>

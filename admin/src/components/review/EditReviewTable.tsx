@@ -1,15 +1,8 @@
-import { useRouter } from "next/router";
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { MiscellaneousContext } from "../../../context/MiscellaneousContext";
 
-const EditReviewTable = ({ singleReview, setIsUpdated }: any) => {
-  const { updatedSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
-  const router = useRouter();
-  const id = router.query.id;
-
+const EditReviewTable = () => {
   const {
     register,
     handleSubmit,
@@ -19,21 +12,10 @@ const EditReviewTable = ({ singleReview, setIsUpdated }: any) => {
   } = useForm();
   const handleAllField = watch();
 
-  useEffect(() => {
-    reset(singleReview);
-  }, [singleReview]);
-
   const updateReview = async () => {
     try {
-      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/review/${id}`, handleAllField);
-      // 
-      reset();
-      updatedSuccess();
-      setIsUpdated(2);
-      console.log("Update success");
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
@@ -46,29 +28,12 @@ const EditReviewTable = ({ singleReview, setIsUpdated }: any) => {
 
         <div className="row ">
           <label
-            htmlFor="image"
-            className="form-label p_zero_first_cap h6 mt-3 ">
-            Image
-          </label>
-          <input
-            type="text"
-            className=" input_field_style form-control form-control-lg   border-0  rounded-0"
-            defaultValue={singleReview.image}
-            {...register("image", { required: "Image is required" })}
-            placeholder="Image"
-          />
-          {errors.image && <p className="form_hook_error">{`${errors.image.message}`}</p>}
-        </div>
-
-        <div className="row ">
-          <label
             htmlFor="name"
             className="form-label p_zero_first_cap h6 mt-3 ">
             Name
           </label>
           <input
             className=" input_field_style form-control form-control-lg   border-0  rounded-0"
-            defaultValue={singleReview.name}
             {...register("name", { required: "Name is required" })}
             placeholder="Name"
           />
@@ -84,7 +49,6 @@ const EditReviewTable = ({ singleReview, setIsUpdated }: any) => {
           <input
             className=" input_field_style form-control form-control-lg   border-0  rounded-0"
             id="description"
-            defaultValue={singleReview.description}
             {...register("description", { required: "Description is required" })}
             placeholder="Description"
           />

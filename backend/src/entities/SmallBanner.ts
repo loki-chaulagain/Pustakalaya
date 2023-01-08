@@ -8,8 +8,8 @@ export class SmallBanner extends BaseEntity {
   @Column({ type: String })
   image!: string;
 
-  @Column({ default: false, type: Boolean })
-  status!: boolean;
+  @Column()
+  status!: string;
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;

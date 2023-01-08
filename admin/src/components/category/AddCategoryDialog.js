@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Grid, Dialog, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useCreateNewCategoryMutation } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function AddCategoryDialog() {
   const [createNewCategory] = useCreateNewCategoryMutation();
+  const { createSuccessToast } = useContext(GlobalContext);
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -25,6 +27,7 @@ export default function AddCategoryDialog() {
 
   const createCategory = async () => {
     createNewCategory(handleAllField);
+    createSuccessToast();
     reset();
     handleClose();
   };

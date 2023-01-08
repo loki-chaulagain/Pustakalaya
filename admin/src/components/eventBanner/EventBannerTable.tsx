@@ -77,14 +77,14 @@ export default function EventBannerTable() {
             <li className="page-item">
               <a
                 onClick={handlePrev}
-                className="page-link rounded-0 h6 cp">
+                className="page-link rounded-0 h6 next_prev cp">
                 Previous
               </a>
             </li>
             <li className="page-item">
               <a
                 onClick={handleNext}
-                className="page-link rounded-0 h6 px-4 cp">
+                className="page-link rounded-0 h6 next_prev px-4 cp">
                 Next
               </a>
             </li>

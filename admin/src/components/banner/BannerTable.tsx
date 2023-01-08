@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TableHeading from "../TableHeading";
 import Link from "next/link";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import AddBannerDialog from "./AddBannerDialog";
-import Image from "next/image";
 import { useDeleteBannerMutation, useGetBannersQuery } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function BannerTable() {
   const { data: banners } = useGetBannersQuery();
   const [deleteBanner] = useDeleteBannerMutation();
+  const { deleteSuccessToast } = useContext(GlobalContext);
+
+  const handleDeleteBanner = async (id: any) => {
+    try {
+      deleteBanner(id);
+      deleteSuccessToast()
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [page, setPage] = useState(0);
   const handleNext = () => {
@@ -34,8 +44,6 @@ export default function BannerTable() {
             <tr className="customPrimaryTxtColor">
               <th scope="col">S.N</th>
               <th scope="col">Image</th>
-              <th scope="col">title</th>
-              <th scope="col">Description</th>
               <th scope="col">CategoryID</th>
               <th scope="col">Status</th>
               <th scope="col">Actions</th>
@@ -47,28 +55,11 @@ export default function BannerTable() {
                 key={index}
                 className="customPrimaryTxtColor custom_table_hover ">
                 <th scope="row">{index + 1}</th>
-                <td>
-                  <a
-                    className="d-flex "
-                    href={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${banner.image}`}>
-                    ​
-                    <div className="banner_table_image_div">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${banner.image}`}
-                        quality={50}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-1"
-                        alt="myimage"
-                      />
-                    </div>
-                  </a>
-                </td>
-                <td>{banner.name}</td>
-                <td>{banner.description}</td>
+
+                <td>{banner.image}</td>
                 <td>{banner.categoryId}</td>
-                {banner.status == 1 && <td className="active_status_green_color">Active</td>}
-                {banner.status == 0 && <td className="active_status_red_color">InActive</td>}
+                {banner.status == "1" && <td className="active_status_green_color">Active</td>}
+                {banner.status == "0" && <td className="active_status_red_color">InActive</td>}
                 <td>
                   <div className="d-flex ">
                     <Link href={`/banner/${banner.id}`}>
@@ -80,7 +71,7 @@ export default function BannerTable() {
                     <div>
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={() => deleteBanner(banner.id)}
+                        onClick={() => handleDeleteBanner(banner.id)}
                         aria-label="delete"
                       />
                     </div>
@@ -97,14 +88,14 @@ export default function BannerTable() {
             <li className="page-item">
               <a
                 onClick={handlePrev}
-                className="page-link rounded-0 h6 cp">
+                className="page-link rounded-0 h6 cp next_prev">
                 Previous
               </a>
             </li>
             <li className="page-item">
               <a
                 onClick={handleNext}
-                className="page-link rounded-0 h6 px-4 cp">
+                className="page-link rounded-0 h6 px-4 cp next_prev">
                 Next
               </a>
             </li>

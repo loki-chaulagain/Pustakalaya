@@ -1,15 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn,  } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn } from "typeorm";
 
 @Entity()
 export class Banner extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
-
-  @Column({ type: String })
-  title!: string;
-
-  @Column({ type: String })
-  description!: string;
 
   @Column({ type: Number })
   categoryId!: number;
@@ -17,8 +11,8 @@ export class Banner extends BaseEntity {
   @Column({ type: String })
   image!: string;
 
-  @Column({ default: false, type: Boolean })
-  status!: boolean;
+  @Column()
+  status!: string;
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;

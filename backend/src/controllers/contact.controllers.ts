@@ -41,8 +41,9 @@ export const createContact = async (req: Request, res: Response) => {
         to: "lokendrachaulagain803@gmail.com",
         subject: "Message From Book Store",
         html: `
-           <p>Full Name : ${req.body.fullName}</p>
+           <p>NAme : ${req.body.name}</p>
            <p>Email : ${req.body.email}</p>
+           <p>Phone : ${req.body.phone}</p>
            <p>Message : ${req.body.message}</p>`,
       });
       console.log("Message Sent");

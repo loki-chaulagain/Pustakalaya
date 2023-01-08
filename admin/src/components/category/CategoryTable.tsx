@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TableHeading from "../TableHeading";
 import AddCategoryDialog from "./AddCategoryDialog";
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
 import { useDeleteCategoryMutation, useGetCategoriesQuery } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function CategoryTable() {
   const { data: categories } = useGetCategoriesQuery();
   const [deleteCategory] = useDeleteCategoryMutation();
+  const { deleteSuccessToast } = useContext(GlobalContext);
+
+  const handleDelete = async (id: any) => {
+    try {
+      deleteCategory(id);
+      deleteSuccessToast();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [page, setPage] = useState(0);
   const handleNext = () => {
@@ -17,7 +28,6 @@ export default function CategoryTable() {
   const handlePrev = () => {
     setPage(page - 1);
   };
-  console.log(page);
 
   return (
     <>
@@ -70,7 +80,7 @@ export default function CategoryTable() {
                   <td>
                     <MdDelete
                       className="delete_button_icon"
-                      onClick={() => deleteCategory(category.id)}
+                      onClick={() => handleDelete(category.id)}
                       aria-label="delete"
                     />
                   </td>
@@ -85,14 +95,14 @@ export default function CategoryTable() {
             <li className="page-item">
               <a
                 onClick={handlePrev}
-                className="page-link rounded-0 h6 cp">
+                className="page-link rounded-0 h6 next_prev cp">
                 Previous
               </a>
             </li>
             <li className="page-item">
               <a
                 onClick={handleNext}
-                className="page-link rounded-0 h6 px-4 cp">
+                className="page-link rounded-0 h6 next_prev px-4 cp">
                 Next
               </a>
             </li>

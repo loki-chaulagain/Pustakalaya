@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Grid, Dialog, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useCreateNewBannerMutation } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function AddBannerDialog() {
   const [createNewBanner] = useCreateNewBannerMutation();
+  const { createSuccessToast } = useContext(GlobalContext);
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -21,13 +23,17 @@ export default function AddBannerDialog() {
     formState: { errors },
     reset,
   } = useForm();
-  const handleAllField: any = watch();
-  console.log(handleAllField);
+  const handleAllField:any = watch();
 
-  const createBanner = async () => {
+  const createBannerHandler = async () => {
+   try {
     createNewBanner(handleAllField);
+    createSuccessToast();
     reset();
     handleClose();
+   } catch (error) {
+    console.log(error);
+   }
   };
 
   return (
@@ -48,37 +54,9 @@ export default function AddBannerDialog() {
         onClose={handleClose}>
         <form
           className="customCard p-3 overflow_hidden"
-          onSubmit={handleSubmit(createBanner)}>
+          onSubmit={handleSubmit(createBannerHandler)}>
           <h4>Create New Banner </h4>
           <p className="customPrimaryTxtColor">To subscribe to this website, please enter your email address here. We will send updates occasionally.</p>
-
-          <div className="row">
-            <label
-              htmlFor="name"
-              className="form-label px-0 mt-2 h6 ">
-              Banner Title
-            </label>
-            <input
-              className=" input_field_style form-control form-control-lg mb-0  border-0  rounded-0"
-              {...register("name", { required: "Name is required" })}
-              placeholder="Banner Name"
-            />
-            {errors.name && <p className="form_hook_error">{`${errors.name.message}`}</p>}
-          </div>
-
-          <div className="row ">
-            <label
-              htmlFor="description"
-              className="form-label px-0 mt-2 h6   ">
-              Description
-            </label>
-            <input
-              className=" input_field_style form-control form-control-lg mb-0  border-0  rounded-0"
-              {...register("description", { required: "description is required" })}
-              placeholder="Description"
-            />
-            {errors.description && <p className="form_hook_error">{`${errors.description.message}`}</p>}
-          </div>
 
           <div className="row ">
             <label

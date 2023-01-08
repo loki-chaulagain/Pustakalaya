@@ -34,11 +34,11 @@ export interface Subscriber {
 
 export interface Contact {
   id: number;
-  fullName: string;
+  name: string;
   email: string;
+  phone: string;
   message: string;
   createdAt: Date;
-  updatedAt: Date;
 }
 
 export interface Color {
@@ -66,10 +66,10 @@ export interface Product {
   categoryId: 2;
   priceNow: 22;
   pricePrevious: 44;
-  isActive:boolean;
-  isBestSeller:boolean;
-  isFeatured:boolean;
-  isHotSale:boolean;
-  isOutOfStock:boolean;
+  isActive: boolean;
+  isBestSeller: boolean;
+  isFeatured: boolean;
+  isHotSale: boolean;
+  isOutOfStock: boolean;
   createdAt: Date;
 }

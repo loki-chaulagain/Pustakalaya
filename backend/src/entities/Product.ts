@@ -11,6 +11,12 @@ export class Product extends BaseEntity {
   @Column({ type: String })
   description!: string;
 
+  @Column({ type: String })
+  author!: string;
+
+  @Column({ type: String })
+  publishedYear!: string;
+
   @Column({ type: Number })
   categoryId!: number;
 
@@ -23,20 +29,17 @@ export class Product extends BaseEntity {
   @Column({ type: String })
   image!: string;
 
-  @Column({ default: false, type: Boolean })
-  isActive!: boolean;
+  @Column()
+  isMostSelling!: string;
 
-  @Column({ default: false, type: Boolean })
-  isBestSeller!: boolean;
+  @Column()
+  isFeatured!: string;
 
-  @Column({ default: false, type: Boolean })
-  isFeatured!: boolean;
+  @Column()
+  isLatestProduct!: string;
 
-  @Column({ default: false, type: Boolean })
-  isHotSale!: boolean;
-
-  @Column({ default: false, type: Boolean })
-  isOutOfStock!: boolean;
+  @Column()
+  isHotSale!: string;
 
   @CreateDateColumn({ type: Date })
   createdAt!: Date;
