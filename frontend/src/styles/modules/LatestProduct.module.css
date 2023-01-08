@@ -22,7 +22,7 @@
   position: absolute;
   top: 5%;
   z-index: 2;
-  color: var(--color-red);
+  color: var(--color-yellow);
   font-size: 26px;
   display: flex;
   left: 92%;
@@ -47,8 +47,8 @@
 .subscribe_button {
   outline: none;
   border: none;
-  background-color: var(--color-red);
-  color: var(--color-primary);
+  background-color: var(--color-yellow);
+  color: var(--color-white);
   font-weight: 600;
 }
 

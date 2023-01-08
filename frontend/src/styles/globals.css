@@ -6,7 +6,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: Montserrat;
-  background: var(--color-primary);
+  background: var(--color-white);
 }
 h1,
 h2,
@@ -30,11 +30,15 @@ a {
 }
 
 :root {
-  --color-primary: #fefffe;
-  --color-blue: #219ebc;
-  --color-red: #fb8500;
-  --color-yellow: #fb8500;
-  --color-gold: #020201;
+  --color-black: #000000;
+  --color-blue: #14213d;
+  --color-yellow: #fca311;
+  --color-grey: #e5e5e5;
+  --color-white: #ffffff;
+  --color-text1: #060a16;
+}
+.text_color {
+  color: var(--color-text1);
 }
 
 .matter {
@@ -56,15 +60,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 .text_color_white {
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .text_color_blue {
   color: #023047 !important;
 }
 
-.text_color_red {
-  color: var(--color-red);
+.text_color_yellow {
+  color: var(--color-yellow);
 }
 
 .text_color_yellow {
@@ -78,9 +82,9 @@ body::-webkit-scrollbar-thumb {
 .rounded_pill_button {
   border: none;
   outline: none;
-  background-color: var(--color-red);
+  background-color: var(--color-yellow);
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-white);
   padding: 5px 30px;
   border-radius: 50px !important;
   transition: all 300ms;
@@ -96,8 +100,8 @@ body::-webkit-scrollbar-thumb {
   align-self: stretch;
   width: 3px !important;
   min-height: 1.5em !important;
-  background-color: red !important;
-  color: red !important;
+  background-color: yellow !important;
+  color: yellow !important;
 }
 
 p {
@@ -133,9 +137,9 @@ p {
 }
 
 .footer-copyright {
-  background-color: #027b9a;
+  background-color: var(--color-blue);
   color: #fff;
-  padding: 15px calc(0.1rem + 1vw);
+  padding: 5px calc(0.1rem + 1vw);
   text-align: center;
 }
 
@@ -147,12 +151,12 @@ p {
 
 .nav_link {
   text-decoration: none;
-  color: var(--color-primary);
+  color: var(--color-white);
   transition: all 300ms;
 }
 
 .nav_link:hover {
-  color: var(--color-red);
+  color: var(--color-yellow);
 }
 
 /* single product page ------------------------- */
@@ -161,7 +165,7 @@ p {
 .btn.show,
 .btn:first-child:active,
 :not(.btn-check) + .btn:active {
-  color: var(--color-primary) !important;
+  color: var(--color-white) !important;
   background-color: var(--color-blue) !important;
   border-color: var(--color-yellow) !important;
   border: 0.15rem solid var(--color-yellow);
@@ -208,7 +212,7 @@ p {
 .home_banner_text_area {
   position: absolute;
   z-index: 999 !important;
-  color: var(--color-primary);
+  color: var(--color-white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -367,19 +371,19 @@ button:focus {
 
 .filter_search_button {
   background-color: var(--color-blue);
-  color: var(--color-primary);
+  color: var(--color-white);
   font-size: 20px;
   border-radius: 0px;
 }
 
 .filter_search_button:hover {
   background-color: var(--color-blue);
-  color: var(--color-primary);
+  color: var(--color-white);
   opacity: 0.98;
 }
 
 .form_select_filter_option::selected {
-  background-color: red !important;
+  background-color: yellow !important;
 }
 
 /* Category navbar adjust */
@@ -531,12 +535,13 @@ button:focus {
 }
 
 .rectangular_product_card {
-  border: 1px solid rgba(128, 128, 128, 0.5);
-  transition: all 200ms ease-in-out;
+  border: 1px solid var(--color-grey);
+  transition: all 250ms ease-in-out;
 }
 
 .rectangular_product_card:hover {
-  border: 1px solid blue;
+  border: 1px solid var(--color-yellow);
+  transform: translateY(-2px);
 }
 .favourite_cat {
   transition: all 200ms ease-in-out;
@@ -545,4 +550,125 @@ button:focus {
 }
 .favourite_cat:hover {
   background-color: rgba(128, 128, 128, 0.205);
+}
+
+.product_card {
+  border: 1px solid var(--color-grey);
+  transition: all 250ms ease-in-out;
+}
+.product_card:hover {
+  border: 1px solid var(--color-yellow);
+  transform: translateY(-4px);
+}
+
+.color_yellow {
+  color: var(--color-yellow);
+}
+
+.icon_bg_div {
+  background-color: #e5e5e59f;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.icon_bg_div:hover {
+  background-color: var(--color-yellow);
+  color: var(--color-white) !important;
+}
+
+.category_card {
+  border: 1px solid var(--color-grey);
+  transition: all 250ms ease-in-out;
+}
+
+.category_card:hover {
+  border: 1px solid var(--color-yellow);
+  transform: translateY(-4px);
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.hot_toast_style {
+  border-radius: 3px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.select_size_input_custom {
+  height: 25px !important;
+  width: 25px !important;
+  border-radius: 0% !important;
+  /* background-color: var(--color-white) !important; */
+  box-shadow: none !important;
+  border-color: none !important;
+  cursor: pointer;
+}
+
+.select_size_input_custom:focus {
+  background-color: var(--color-orange) !important;
+  border-color: var(--color-orange) !important;
+}
+.select_size_input_custom:checked {
+  background-color: var(--color-orange) !important;
+  border-color: var(--color-orange) !important;
+}
+
+.select_size_input_custom_label {
+  font-size: 20px !important;
+  padding-left: 7px;
+  padding-right: 15px;
+}
+
+.select_color_input_custom {
+  padding: 10px !important;
+  background-color: var(--color-white) !important;
+  box-shadow: none !important;
+  border-color: none !important;
+  cursor: pointer;
+}
+
+.select_color_input_custom:focus {
+  background-color: var(--color-yellow) !important;
+  border-color: var(--color-yellow) !important;
+}
+.select_color_input_custom:checked {
+  background-color: var(--color-yellow) !important;
+  border-color: var(--color-yellow) !important;
+}
+
+.select_size_input_custom_label {
+  font-size: 20px !important;
+  padding-left: 7px;
+  padding-right: 15px;
+}
+
+.checkout_input {
+  box-shadow: none !important;
+}
+.checkout_input:focus {
+  border-color: var(--color-yellow) !important;
+}
+
+.checkout_button {
+  color: var(--color-white) !important;
+  background-color: var(--color-yellow) !important;
+}
+
+@media only screen and (max-width: 1800px) {
+  .login_wrapper {
+    width: 45vw;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .login_wrapper {
+    width: 35vw;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .login_wrapper {
+    width: 50vw;
+  }
 }

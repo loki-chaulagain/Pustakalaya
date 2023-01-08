@@ -6,9 +6,12 @@ import { FiClock } from "react-icons/fi";
 import { BiPhone } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { useCreateContactMutation } from "../redux/api/globalApi";
+import { toast } from "react-hot-toast";
 
 const ContactForm = () => {
   const [createContact] = useCreateContactMutation();
+  const mailSuccess = () => toast(" ✅ Mail Send Success");
+  const somethingWentWrong = () => toast(" ❌ Something Went Wrong");
 
   const {
     register,
@@ -20,8 +23,14 @@ const ContactForm = () => {
   let handleAllField: any = watch();
 
   const sendMail = async () => {
-    createContact(handleAllField);
-    reset();
+    try {
+      createContact(handleAllField);
+      mailSuccess();
+      reset();
+    } catch (error) {
+      reset();
+      somethingWentWrong();
+    }
   };
 
   return (

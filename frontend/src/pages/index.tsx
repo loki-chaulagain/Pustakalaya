@@ -4,18 +4,22 @@ import HeroCarousel from "../components/home/HeroCarousel";
 import Newsletter from "../components/Newsletter";
 import ProductSection from "../components/ProductSection";
 import AboutProductSection2 from "../components/home/AboutProductSection2";
-import { useGetBannersQuery, useGetProductsQuery } from "../redux/api/globalApi";
+import { useGetBannersQuery } from "../redux/api/globalApi";
+import CategoriesSection from "../components/CategorySection";
 
 export default function Index() {
   const { data: banners } = useGetBannersQuery();
-  const { data: products } = useGetProductsQuery();
 
   return (
     <div className="matter">
       <HeroCarousel banners={banners} />
-      <ProductSection  />
+      <div className="mt-5">
+        <ProductSection title="Most Selling Products" />
+      </div>
+      <ProductSection title="Latest Products" />
+      <CategoriesSection />
       <AboutProductSection />
-      <ProductSection products={products} />
+      <ProductSection title="Latest Products" />
       <Newsletter />
       <AboutProductSection2 />
     </div>

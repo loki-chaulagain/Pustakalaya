@@ -23,14 +23,16 @@ export default function Login() {
   };
 
   return (
-    <div className="login_wrapper my-5 py-5">
+    <div className=" matter d-flex align-items-center justify-content-center " style={{minHeight:"70vh"}}>
+
+    <div className="login_wrapper " >
       <form
         onSubmit={handleSubmit(loginUser)}
         className="d-flex flex-column align-items-center login_form_box">
         <h1 className="h1 mb-1 my_black fw-bold">Welcome back ! </h1>
         <p className="para_text">Sign in to get the most out of Techno Store</p>
 
-        <div className="w-25 my-2">
+        <div className="w-100 my-2">
           <input
             type="email"
             className="form-control register_input  rounded-1  "
@@ -40,7 +42,7 @@ export default function Login() {
           {errors.email && <span className="text-danger fw-semibold">Email is required</span>}
         </div>
 
-        <div className="w-25 my-2">
+        <div className="w-100 my-2">
           <input
             type="password"
             className="form-control register_input rounded-1  "
@@ -50,7 +52,7 @@ export default function Login() {
           {errors.password && <span className="text-danger fw-semibold">Password is required of Length 6</span>}
         </div>
 
-        <div className="w-25 d-flex my-2 justify-content-between ">
+        <div className="w-100 d-flex my-2 justify-content-between ">
           <div className=" form-check">
             <input
               type="checkbox"
@@ -70,7 +72,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="btn  w-25 register_button rounded-1">
+          className="btn  w-100 register_button rounded-1">
           Login
         </button>
         <small className="pb-2 pt-3 text-muted">
@@ -80,6 +82,7 @@ export default function Login() {
           </Link>
         </small>
       </form>
+    </div>
     </div>
   );
 }

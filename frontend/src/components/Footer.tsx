@@ -3,9 +3,12 @@ import React from "react";
 import styles from "../styles/modules/Footer.module.css";
 import { useForm } from "react-hook-form";
 import { useCreateSubscriberMutation } from "../redux/api/globalApi";
+import { toast } from "react-hot-toast";
 
 const Footer = () => {
   const [createSubscriber] = useCreateSubscriberMutation();
+  const subscribedSuccess = () => toast(" ✅ Subscribed Success");
+  const subscribedUnSuccess = () => toast(" ❌ Something Went Wrong");
 
   const {
     register,
@@ -19,9 +22,12 @@ const Footer = () => {
   const handleCreateSubscriber = async () => {
     try {
       createSubscriber(handleAllField);
+      subscribedSuccess();
       reset();
     } catch (error) {
       console.log(error);
+      subscribedUnSuccess();
+      reset();
     }
   };
 
@@ -46,19 +52,27 @@ const Footer = () => {
                     </a>
                   </Link>
 
+                  <Link href={"/cart"}>
+                    <a
+                      className="nav_link"
+                      href="">
+                      My Cart
+                    </a>
+                  </Link>
+
+                  <Link href={"/favourite"}>
+                    <a
+                      className="nav_link"
+                      href="">
+                      Favourite
+                    </a>
+                  </Link>
+
                   <Link href={"/about"}>
                     <a
                       className="nav_link"
                       href="">
                       About
-                    </a>
-                  </Link>
-
-                  <Link href={"/blog"}>
-                    <a
-                      className="nav_link"
-                      href="">
-                      Blogs
                     </a>
                   </Link>
                 </div>
@@ -77,6 +91,14 @@ const Footer = () => {
                       className="nav_link"
                       href="">
                       privacy Policy
+                    </a>
+                  </Link>
+
+                  <Link href={"/login"}>
+                    <a
+                      className="nav_link"
+                      href="">
+                      Login
                     </a>
                   </Link>
 
@@ -119,7 +141,7 @@ const Footer = () => {
         <div className="footer-copyright z999">
           <div className="footer-copyright-wrapper">
             <p className="footer_copyright_text">
-              ©2022. | Designed And Developed By : <span className={styles.falcon_link}> Falcon Tech Nepal </span> | All rights reserved.
+              ©2022. | Designed And Developed By : <span className={styles.falcon_link}> Lokendra Chaulagain </span> | All rights reserved.
             </p>
           </div>
         </div>

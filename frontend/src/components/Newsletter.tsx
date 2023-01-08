@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "../styles/modules/LatestProduct.module.css";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useCreateSubscriberMutation } from "../redux/api/globalApi";
 
 const Newsletter = () => {
-  const mailSendSuccess = () => toast.success("We will notify our updates");
-  const sendMailError = () => toast.error("Something Went Wrong");
+  const [createSubscriber] = useCreateSubscriberMutation();
+  const subscribedSuccess = () => toast(" ✅ Subscribed Success");
+  const subscribedUnSuccess = () => toast(" ❌ Something Went Wrong");
 
   const {
     register,
@@ -15,17 +16,18 @@ const Newsletter = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const handleAllField = watch();
+  const handleAllField: any = watch();
+  console.log(handleAllField)
 
-  const createSubscriber = async () => {
+  const handleCreateSubscriber = async () => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/subscriber`, handleAllField);
-      console.log("Form has been submitted");
-      mailSendSuccess();
+      createSubscriber(handleAllField);
+      subscribedSuccess();
       reset();
     } catch (error) {
       console.log(error);
-      sendMailError();
+      subscribedUnSuccess();
+      reset();
     }
   };
 
@@ -37,7 +39,7 @@ const Newsletter = () => {
           <p className="text-muted">If you never miss our interesting news by joining our newsletter.</p>
         </div>
         <form
-          onSubmit={handleSubmit(createSubscriber)}
+          onSubmit={handleSubmit(handleCreateSubscriber)}
           className="d-flex flex-column flex-sm-row pt-5 mb-1">
           <input
             type="email"

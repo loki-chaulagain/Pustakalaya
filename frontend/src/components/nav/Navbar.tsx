@@ -12,6 +12,7 @@ import { FaSitemap } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import demo from "../../assets/bookDemo.jpg";
 import { useGetCategoriesQuery } from "../../redux/api/globalApi";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
   const { data: categories } = useGetCategoriesQuery();
@@ -67,10 +68,10 @@ const Navbar = () => {
                 ))}
             </div>
           </div>
-          <Link href={"/about"}>
+          <Link href={"/favourite"}>
             <a
               type="button"
-              className={`${route == "about" ? styles.nav_active : styles.nav_link} px-3`}>
+              className={`${route == "favourite" ? styles.nav_active : styles.nav_link} px-3`}>
               Favourite
             </a>
           </Link>
@@ -90,7 +91,27 @@ const Navbar = () => {
               Contact
             </a>
           </Link>
+
+          <Link href={"/cart"}>
+            <a
+              type="button"
+              className={`${route == "cart" ? styles.nav_active : styles.nav_link} ps-3`}>
+              Cart
+            </a>
+          </Link>
+
+
+          <Link href={"/login"}>
+            <a
+              type="button"
+              className={`${route == "login" ? styles.nav_active : styles.nav_link} ps-3`}>
+              Login
+            </a>
+          </Link>
         </div>
+
+       
+
         <button
           typeof="button"
           className="navbar-toggler d-flex d-block d-lg-none m-0 p-0"

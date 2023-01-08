@@ -1,57 +1,85 @@
 import React from "react";
-import styles from "../styles/modules/Product.module.css";
 import Image from "next/image";
-import Link from "next/link";
 import demo from "../assets/book.avif";
 import { useGetCategoriesQuery } from "../redux/api/globalApi";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 
-const ProductSection = () => {
+const ProductSection = ({ title }: any) => {
   const { data: categories } = useGetCategoriesQuery();
-
   const counter = 6;
 
-  return (
-    <div className="container mt-5 pt-5">
-      <div className="row cursor_pointer pb-5">
-        {/* {products &&
-          Array(counter).fill(
-            <div className="col-12  col-md-6 col-xl-4  px-1 pb-4">
-              <div className="product_skeleton">
-                <div className="product_skeleton_div1 "></div>
-                <div className="product_skeleton_div2 w-50"></div>
-              </div>
-            </div>
-          )} */}
+  const addedCartSuccess = () => toast(" ✅ Added To Cart");
+  const addedFavouriteSuccess = () => toast(" ✅ Added To Favourite");
+  const somethingWentWrong = () => toast(" ❌ Something Went Wrong");
 
-        {categories &&
-          categories.map((product: any, index: any) => (
-            <div
-              key={index}
-              className="col-12 col-md-6 col-xl-4  px-2 pb-5">
-              <div className={`${styles.product_item} `}>
-                <div className={`${styles.product_content}  `}>
-                  <p className="h4 text_color">Lorem, ipsum dolor.</p>
-                  <p className="text-muted text_color fw-semibold">
-                    {" "}
-                    <span className="color_orange">Author</span> : Binod Dhami
+  const handleFavourite = async () => {
+    try {
+      addedFavouriteSuccess();
+    } catch (error) {
+      console.log(error);
+      somethingWentWrong();
+    }
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      addedCartSuccess();
+    } catch (error) {
+      console.log(error);
+      somethingWentWrong();
+    }
+  };
+
+  return (
+    <div className="container ">
+      <h4 className="text_color">{title}</h4>
+      <hr className="my-0 mb-4 mt-2" />
+      <div className="row cursor_pointer pb-5">
+        <div className="row d-flex">
+          {categories &&
+            categories.map((product: any, index: any) => (
+              <div
+                key={index}
+                className="col-lg-4 col-xl-3 ">
+                <div className="product_card d-flex flex-column align-items-center  mb-4 gap-2 pb-3 ">
+                  <Image
+                    className=" no_selection cp"
+                    src={demo}
+                    objectFit="scale-down"
+                    alt="img"
+                    height={200}
+                    width={300}
+                  />
+                  <small className="text-muted"> Category Name</small>
+                  <p className="h6 text_color mb-0 ">Apple iPad Mini G2356</p>
+                  <p className="h6 text_color mb-0 ">Published Year : 2002</p>
+                  <p className="text_color h6 mb-0 ">
+                    Author : <span>Lokendra </span>{" "}
                   </p>
-                  <p className="text-muted text_color fw-semibold">
-                    <span className="color_orange">Published Year</span> :2022
+                  <p className="h5 ">
+                    <span className="color_yellow">$600.00</span> <span className="text-muted">$400</span>
                   </p>
-                </div>
-                <Link href={`/product/${product.url}`}>
-                  <div className={`${styles.image_only_div}`}>
-                    <Image
-                      src={demo}
-                      layout="fill"
-                      objectFit="cover"
-                      alt="img"
-                    />
+                  <div className="d-flex align-items-center text-muted gap-4 mt-2">
+                    <div className="icon_bg_div p-1 rounded-circle">
+                      <AiOutlineHeart
+                        onClick={handleFavourite}
+                        size={23}
+                        className="cp"
+                      />
+                    </div>
+                    <div className="icon_bg_div p-1 rounded-circle">
+                      <AiOutlineShoppingCart
+                        onClick={handleAddToCart}
+                        size={23}
+                        className="cp"
+                      />
+                    </div>
                   </div>
-                </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
     </div>
   );
