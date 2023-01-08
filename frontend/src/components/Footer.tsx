@@ -36,8 +36,11 @@ const Footer = () => {
       <footer className={`${styles.footer}`}>
         <div className="footer-content container">
           <div className="row px-0 mx-0">
-            <div className="col-12 d-flex align-items-center justify-content-center mb-5 col-lg-4">
-              <h2>Logo Here</h2>
+            <div className="col-12 d-flex flex-column  mb-5 col-lg-4">
+              <h1 className="color_white">पुस्तकालय</h1>
+              <p className="mt-3">Kathmandu, NewBaneshwor Area, Nepal</p>
+              <p className="mt-1">lokendra@gmail.com</p>
+              <p className=" mt-1">9864755749</p>
             </div>
 
             <div className="col-12 col-md-6 col-lg-4 mb-5 pb-3 d-flex flex-column">

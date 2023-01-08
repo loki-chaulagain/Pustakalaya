@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className={`${styles.nav_bar} navbar navbar-expand-lg`}>
       <div className="container">
-        <h2>Logo</h2>
+        <h2 className="color_white" >पुस्तकालय</h2>
 
         <div
           className="d-flex gap-5 d-none d-lg-block "

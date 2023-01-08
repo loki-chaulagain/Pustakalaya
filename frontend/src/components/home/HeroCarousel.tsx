@@ -5,8 +5,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import demo from "../../assets/book.avif";
+import { useGetBannersQuery } from "../../redux/api/globalApi";
 
-const HeroCarousel = ({ banners }: any) => {
+const HeroCarousel = () => {
+  const { data: banners, isLoading, isError } = useGetBannersQuery();
+  if (isLoading) {
+    <div>Loading ...</div>;
+  }
+
+  if (isError) {
+    <div>Error ...</div>;
+  }
+
   return (
     <>
       <Swiper

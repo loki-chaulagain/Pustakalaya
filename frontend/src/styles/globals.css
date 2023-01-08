@@ -41,6 +41,10 @@ a {
   color: var(--color-text1);
 }
 
+.text_blue {
+  color: var(--color-blue);
+}
+
 .matter {
   padding-top: calc(4rem + 3vh);
 }
@@ -57,6 +61,9 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--color-blue);
   border-radius: 20px;
   border: 3px solid var(--color-blue);
+}
+.color_white{
+  color: var(--color-white) !important;
 }
 
 .text_color_white {
@@ -549,8 +556,13 @@ button:focus {
   cursor: pointer;
 }
 .favourite_cat:hover {
-  background-color: rgba(128, 128, 128, 0.205);
+  background-color: var(--color-blue);
+  color: var(--color-white);
 }
+.bg_blue{
+  background-color: var(--color-blue);
+}
+
 
 .product_card {
   border: 1px solid var(--color-grey);
@@ -655,15 +667,19 @@ button:focus {
   background-color: var(--color-yellow) !important;
 }
 
-@media only screen and (max-width: 1800px) {
+.login_wrapper {
+  width: 30vw;
+}
+
+@media only screen and (max-width: 1500px) {
   .login_wrapper {
-    width: 45vw;
+    width: 40vw;
   }
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1200px) {
   .login_wrapper {
-    width: 35vw;
+    width: 50vw;
   }
 }
 
@@ -671,4 +687,26 @@ button:focus {
   .login_wrapper {
     width: 50vw;
   }
+}
+
+.common_hover {
+  transition: all 200ms ease-in-out;
+}
+.common_hover:hover {
+  color: var(--color-yellow) !important;
+}
+
+.no_selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.cat_bar{
+  background-color: #e5e5e55d;
+  height: 80%;
 }

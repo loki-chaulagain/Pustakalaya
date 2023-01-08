@@ -38,9 +38,9 @@ export default function Favourite() {
       style={{ minHeight: "70vh" }}>
       <div className="row d-flex  justify-content-center ">
         <div className="col-3">
-          <h4 className="">Categories</h4>
+          <h4 className="text-center py-2 bg_blue color_white ">Categories</h4>
           <hr className="my-0 mb-4 mt-2" />
-          <div>
+          <div className="cat_bar">
             {categories &&
               categories.map((category: any, index: any) => (
                 <h6
@@ -53,7 +53,7 @@ export default function Favourite() {
         </div>
         <div className=" col">
           <div className="row ">
-            <h4 className="text_color">Your Favourite Products</h4>
+            <h4 className="text_color py-2">Your Favourite Products</h4>
             <hr className="my-0 mb-4 mt-2" />
             {products &&
               products.map((product: any, index) => (

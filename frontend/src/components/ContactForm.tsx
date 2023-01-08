@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "../styles/modules/Contact.module.css";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
@@ -123,8 +123,8 @@ const ContactForm = () => {
         </div>
       </form>
       <div>
-        <div className={`${styles.google_map_section}`}>
-          <h1 className="fw-bold py-5 text_color_blue my_custom_text_muted">
+        <div className="mb-5 pb-5">
+          <h1 className="fw-bold py-5 text_color ">
             Want To Visit Us <span className="text_color_red">!</span>{" "}
           </h1>
 

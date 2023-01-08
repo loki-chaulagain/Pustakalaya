@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdDeleteOutline, MdOutlineClear } from "react-icons/md";
 import demo from "../assets/book.avif";
 import { useGetCategoriesQuery } from "../redux/api/globalApi";
+import { IoMdAdd } from "react-icons/io";
+import { AiOutlineMinus } from "react-icons/ai";
+
 const products = [{ name: "loki" }, { name: "loki" }, { name: "loki" }, { name: "loki" }];
 
 export default function Cart() {
-  const { data: categories } = useGetCategoriesQuery();
-
   const removesSuccess = () => toast(" ✅ Delete Success");
   const addedCartSuccess = () => toast(" ✅ Added To Cart");
   const somethingWentWrong = () => toast(" ❌ Something Went Wrong");
@@ -33,6 +34,14 @@ export default function Cart() {
     }
   };
 
+  const [quantity, setQuantity] = useState(1);
+  const quantityInc = () => {
+    // setQuantity(quantity + 1);
+  };
+  const quantityDec = () => {
+    // setQuantity(quantity - 1);
+  };
+
   return (
     <div
       className="px-5 matter   d-flex align-items-center "
@@ -40,7 +49,7 @@ export default function Cart() {
       <div className="row d-flex  align-items-center justify-content-center ">
         <div className=" col">
           <div className="row ">
-            <h4 className="text_color">Your Favourite Products</h4>
+            <h4 className="text_color">All Cart Products (4)</h4>
             <hr className="my-0 mb-4 mt-2" />
             {products &&
               products.map((product: any, index) => (
@@ -67,6 +76,20 @@ export default function Cart() {
                         <span className="color_yellow">$600.00</span> <span className="text-muted">$400</span>
                       </p>
                       <div className="d-flex align-items-center text-muted gap-4 mt-2">
+                        <div className="border px-3 py-1 d-flex gap-2 align-items-center  no_selection">
+                          <AiOutlineMinus
+                            onClick={quantityDec}
+                            size={24}
+                            className="cp"
+                          />
+                          {quantity}
+                          <IoMdAdd
+                            onClick={quantityInc}
+                            size={24}
+                            className="cp"
+                          />
+                        </div>
+
                         <div className="icon_bg_div p-1 rounded-circle">
                           <MdDeleteOutline
                             onClick={handleRemove}
@@ -87,13 +110,18 @@ export default function Cart() {
                 </div>
               ))}
           </div>
+          <hr />
+          <h6 className="text_color">Delivery :Nrs 43 </h6>
+          <h6 className="mt-2 text_color">Product : Nrs 5657.75</h6>
+          <hr className="w-25 text_color" />
+          <h5 className="text_color">Total : Nrs 5657.75</h5>
         </div>
 
         {/* ------------------------------ */}
         <div className="col-12   col-md-6 col-xl-4 mt-5 com-md-0   ">
           <div className="px-4 cart_payment_info py-5 rounded-3">
-            <h1 className="fw-bold dark_blue h1">Payment Info</h1>
-            <h5 className="h5 dark_blue mb-3">Choose your payemet option</h5>
+            <h1 className="fw-bold text_blue h1">Payment Info</h1>
+            <h5 className="h5 text_blue mb-3">Choose your payemet option</h5>
             <div className="form-check mb-2">
               <input
                 className="form-check-input select_color_input_custom "
@@ -102,7 +130,7 @@ export default function Cart() {
                 id="credit"
               />
               <label
-                className="form-check-label select_size_input_custom_label cp dark_blue"
+                className="form-check-label select_size_input_custom_label cp text_blue"
                 htmlFor="credit">
                 Credit Card
               </label>
@@ -116,7 +144,7 @@ export default function Cart() {
                 id="eSewa"
               />
               <label
-                className="form-check-label select_size_input_custom_label cp dark_blue"
+                className="form-check-label select_size_input_custom_label cp text_blue"
                 htmlFor="eSewa">
                 e-Sewa
               </label>
@@ -130,13 +158,13 @@ export default function Cart() {
                 id="cash"
               />
               <label
-                className="form-check-label select_size_input_custom_label cp dark_blue"
+                className="form-check-label select_size_input_custom_label cp text_blue"
                 htmlFor="cash">
                 Cash On Delivery
               </label>
             </div>
 
-            <h5 className="h5 mt-4 dark_blue mb-3">Your Payment Details</h5>
+            <h5 className="h5 mt-4 text_blue mb-3">Your Payment Details</h5>
             <input
               className="form-control form-control-lg rounded-1 py-3 mb-4 checkout_input"
               type="text"
@@ -173,8 +201,8 @@ export default function Cart() {
           </div>
         </div>
         <hr className="mt-5" />
-        <Link href={"/product"}>
-          <h5 className="dark_blue cp mb-5">
+        <Link href={"/"}>
+          <h5 className="text_blue cp_hover mb-5 pb-5">
             {" "}
             <span className="h3">←</span> Continue Shopping
           </h5>
