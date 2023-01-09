@@ -61,15 +61,16 @@ export interface Review {
 export interface Product {
   id: number;
   name: string;
-  description: description;
+  description: string;
   image: string;
-  categoryId: 2;
-  priceNow: 22;
-  pricePrevious: 44;
-  isActive: boolean;
-  isBestSeller: boolean;
-  isFeatured: boolean;
-  isHotSale: boolean;
-  isOutOfStock: boolean;
+  categoryId: number;
+  priceNow: number;
+  pricePrevious: number;
+  author: string;
+  publishedYear: number;
+  isMostSelling: string;
+  isFeatured: string;
+  isLatestProduct: string;
+  isHotSale: string;
   createdAt: Date;
 }

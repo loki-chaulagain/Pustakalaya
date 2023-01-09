@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import TableHeading from "../TableHeading";
 import { useDeleteSmallBannerMutation, useGetSmallBannersQuery } from "../../redux/api/globalApi";
 import AddEventBannerDialog from "./AddEventBannerDialog";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function EventBannerTable() {
   const { data: eventBanners } = useGetSmallBannersQuery();
   const [deleteSmallBanner] = useDeleteSmallBannerMutation();
+  const { deleteSuccessToast } = useContext(GlobalContext);
+
+  const handleDelete = async (id: number) => {
+    deleteSmallBanner(id);
+    deleteSuccessToast();
+  };
 
   const [page, setPage] = useState(0);
   const handleNext = () => {
@@ -59,7 +66,7 @@ export default function EventBannerTable() {
                       <div>
                         <MdDelete
                           className="delete_button_icon"
-                          onClick={() => deleteSmallBanner(eventBanner.id)}
+                          onClick={() => handleDelete(eventBanner.id)}
                           aria-label="delete"
                         />
                       </div>

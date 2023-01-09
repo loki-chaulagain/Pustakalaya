@@ -32,7 +32,7 @@ body {
 
 /* primaryHeadingColor */
 .phc {
-  color: var(--primary-heading-color);
+  color: var(--primary-heading-color) !important;
 }
 
 .customLabel {
@@ -60,7 +60,7 @@ body {
 
 /* crusor pointer */
 .cp {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .customBg {

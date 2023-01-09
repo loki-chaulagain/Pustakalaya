@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import TableHeading from "../TableHeading";
 import { MdDelete } from "react-icons/md";
 import { Button } from "@mui/material";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { useDeleteProductMutation, useGetProductsQuery } from "../../redux/api/globalApi";
+import { GlobalContext } from "../../context/GlobalContext";
 
 export default function AllProductsTable() {
   const { data: products } = useGetProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
+  const { deleteSuccessToast } = useContext(GlobalContext);
+
+  const handleDelete = async (id: number) => {
+    deleteProduct(id);
+    deleteSuccessToast();
+  };
 
   const [page, setPage] = useState(0);
   const handleNext = () => {
@@ -40,9 +47,10 @@ export default function AllProductsTable() {
               <th scope="col">S.N</th>
               <th scope="col">Name</th>
               <th scope="col">Image</th>
-              <th scope="col">Category</th>
               <th scope="col">Description</th>
               <th scope="col">Author</th>
+              <th scope="col">Published Year</th>
+              <th scope="col">Category</th>
               <th scope="col">Price Now</th>
               <th scope="col">Price Previous</th>
               <th scope="col">Most Selling</th>
@@ -58,13 +66,16 @@ export default function AllProductsTable() {
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{product.id}</th>
                   <td>{product.name}</td>
                   <td>{product.image}</td>
-                  <td>{product.categoryId}</td>
                   <td>{product.description}</td>
+                  <td>{product.author}</td>
+                  <td>{product.publishedYear}</td>
+                  <td>{product.categoryId}</td>
                   <td>{product.priceNow}</td>
                   <td>{product.pricePrevious}</td>
+
                   {product.isMostSelling == 1 && <td className="active_status_green_color">Yes</td>}
                   {product.isMostSelling == 0 && <td className="active_status_red_color">No</td>}
 
@@ -87,7 +98,7 @@ export default function AllProductsTable() {
 
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={() => deleteProduct(product.id)}
+                        onClick={() => handleDelete(product.id)}
                         aria-label="delete"
                       />
                     </div>

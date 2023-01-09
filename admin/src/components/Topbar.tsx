@@ -5,6 +5,7 @@ import MailDialogBox from "./MailDialogBox";
 import NotificationDialogBox from "./NotificationDialogBox";
 import { BiLogOut } from "react-icons/bi";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Topbar() {
   const router = useRouter();
@@ -25,8 +26,9 @@ export default function Topbar() {
           container
           justifyContent="space-between">
           <div className="d-flex  align-items-center gap-3">
-            <MenuIcon className="cp" />
-            <Typography variant="h6">DASHBOARD</Typography>
+            <Link href={"/"}>
+              <h2 className="color_white cp no_selection">पुस्तकालय</h2>
+            </Link>
           </div>
 
           <Box>
@@ -39,13 +41,14 @@ export default function Topbar() {
                 direction="row"
                 spacing={1}>
                 <Chip
+                className="phc cp"
                   avatar={
                     <Avatar
                       alt="Natacha"
-                      src="/static/images/avatar/1.jpg"
+                      src=""
                     />
                   }
-                  label="Avatar"
+                  label="Admin"
                   variant="outlined"
                 />
 

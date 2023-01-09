@@ -5,7 +5,7 @@ import { useCreateProductMutation, useGetCategoriesQuery } from "../../redux/api
 import { GlobalContext } from "../../context/GlobalContext";
 import { useRouter } from "next/router";
 
-export default function AddProductTable() {
+export default function EditProductTable() {
   const router = useRouter();
   const { data: categories } = useGetCategoriesQuery();
   const [createProduct] = useCreateProductMutation();
@@ -242,7 +242,6 @@ export default function AddProductTable() {
             {errors.isLatestProduct && <p className="form_hook_error">{`${errors.isLatestProduct.message}`}</p>}
           </div>
 
-         
           <div className="col-6 ">
             <label
               htmlFor="isHotSale"
@@ -264,9 +263,6 @@ export default function AddProductTable() {
             </select>
             {errors.isHotSale && <p className="form_hook_error">{`${errors.isHotSale.message}`}</p>}
           </div>
-
-
-
         </div>
 
         <div className="mt-3 d-flex justify-content-end  gap-2">

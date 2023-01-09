@@ -1,7 +1,8 @@
 
 .each_mail_div{
-    background-color: #2d3741 ;
-    padding: 5px 5px;
+    background-color: #28323d44 ;
+    padding: 10px;
     border-radius: 2px;
     cursor: pointer;
+    border-radius: 10px;
 }

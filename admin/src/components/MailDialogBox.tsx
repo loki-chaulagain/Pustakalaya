@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import MailIcon from "@mui/icons-material/Mail";
 import ClearIcon from "@mui/icons-material/Clear";
 import styles from "../styles/modules/Topbar.module.css";
 import { Dialog, Button, DialogContent, DialogActions, Typography, Badge, Grid, Box } from "@mui/material";
 import { useGetContactsQuery } from "../redux/api/globalApi";
+import { format } from "timeago.js";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -68,7 +69,7 @@ export default function MailDialogBox() {
                 className={`${styles.each_mail_div} mb-3`}>
                 <div className="d-flex align-items-center justify-content-between">
                   <h6 className="m-0">From : {mail.email}</h6>
-                  <span className="small ">{mail.createdAt}</span>
+                  <span className="small ">{format(mail.createdAt)}</span>
                 </div>
                 <small className="p-0">{mail.message}</small>
               </div>
