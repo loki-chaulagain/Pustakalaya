@@ -62,7 +62,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
   border: 3px solid var(--color-blue);
 }
-.color_white{
+.color_white {
   color: var(--color-white) !important;
 }
 
@@ -559,10 +559,9 @@ button:focus {
   background-color: var(--color-blue);
   color: var(--color-white);
 }
-.bg_blue{
+.bg_blue {
   background-color: var(--color-blue);
 }
-
 
 .product_card {
   border: 1px solid var(--color-grey);
@@ -705,8 +704,18 @@ button:focus {
   user-select: none;
 }
 
-
-.cat_bar{
+.cat_bar {
   background-color: #e5e5e55d;
   height: 80%;
 }
+
+
+
+@media only screen and (max-width: 576px) {
+  .category_img_div{
+    position: relative;
+    height: 100px;
+    width: 120px;
+  }
+}
+

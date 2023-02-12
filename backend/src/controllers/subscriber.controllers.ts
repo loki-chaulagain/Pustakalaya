@@ -4,9 +4,15 @@ import { Subscriber } from "../entities/Subscriber";
 import nodemailer from "nodemailer";
 
 export const getSubscribers = async (req: Request, res: Response) => {
+  const page: any = req.query.page || 1;
+  const size: any = req.query.size || 5;
+  const skip = (page - 1) * size;
+  console.log({ page, size, skip });
+
   try {
-    const results = await AppDataSource.manager.find(Subscriber, { take: 5 });
-    return res.status(200).json(results);
+    const subscriberCount = await AppDataSource.manager.count(Subscriber);
+    const subscribers = await AppDataSource.manager.find(Subscriber, { take: size, skip: skip });
+    return res.status(200).json({subscribers, subscriberCount});
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }

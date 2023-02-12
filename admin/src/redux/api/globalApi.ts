@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Banner, Category, Contact, SmallBanner, Subscriber, Color, Size, Review,Product } from "../type/type";
+import { Banner, Category, Contact, SmallBanner, Subscriber, Color, Size, Review, Product } from "../type/type";
 
 export const globalApi = createApi({
   reducerPath: "globalApi",
@@ -7,7 +7,7 @@ export const globalApi = createApi({
     baseUrl: "http://localhost:4000/api",
   }),
 
-  tagTypes: ["Banner", "SmallBanner", "Category", "Subscriber", "Contact", "Color", "Size", "Review","Product"],
+  tagTypes: ["Banner", "SmallBanner", "Category", "Subscriber", "Contact", "Color", "Size", "Review", "Product"],
   endpoints: (builder) => ({
     getBanners: builder.query<Banner[], void>({
       query() {
@@ -155,13 +155,12 @@ export const globalApi = createApi({
     }),
 
     // Subscriber------------------------------------->
-    getSubscribers: builder.query<Subscriber[], void>({
-      query() {
+    getSubscribers: builder.query<Subscriber[], { page: number }>({
+      query(page) {
         return {
-          url: `/subscriber`,
+          url: `/subscriber?page=${page}&size=5`,
         };
       },
-      transformResponse: (res: Subscriber[]) => res.sort((a: any, b: any) => b.id - a.id),
       providesTags: ["Subscriber"],
     }),
 
@@ -364,8 +363,6 @@ export const globalApi = createApi({
       },
       invalidatesTags: ["Product"],
     }),
-
-
   }),
 });
 
@@ -411,5 +408,5 @@ export const {
   useGetProductQuery,
   useCreateProductMutation,
   useUpdateProductMutation,
-  useDeleteProductMutation
+  useDeleteProductMutation,
 } = globalApi;

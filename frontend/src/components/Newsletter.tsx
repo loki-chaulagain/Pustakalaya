@@ -32,7 +32,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className={`${styles.newsletter_section}  `}>
+    <div className={`${styles.newsletter_section} px-2 `}>
       <div className="container news_letter_padding">
         <div className={`${styles.news_letter_header} text_muted_heading d-flex flex-column  text_color_white align-items-center text-center`}>
           <h1 >Join to our Newsletter</h1>

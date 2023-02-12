@@ -12,11 +12,9 @@ import { FaSitemap } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import demo from "../../assets/bookDemo.jpg";
 import { useGetCategoriesQuery } from "../../redux/api/globalApi";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
   const { data: categories } = useGetCategoriesQuery();
-
   const router = useRouter();
   const route = router.pathname.split("/")[1];
 

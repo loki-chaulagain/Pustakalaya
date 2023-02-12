@@ -1,14 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TableHeading from "../TableHeading";
 import { MdDelete } from "react-icons/md";
 import { format } from "timeago.js";
 import { useDeleteSubscriberMutation, useGetSubscribersQuery } from "../../redux/api/globalApi";
 import { GlobalContext } from "../../context/GlobalContext";
+import axios from "axios";
 
 export default function SubscriberTable() {
-  const { data: subscribers } = useGetSubscribersQuery();
+  const [page, setPage] = useState<any>(1);
+  const [currentCount, setCurrentCount] = useState(5);
+
+  const { data: data } = useGetSubscribersQuery<any>(page);
   const [deleteSubscriber] = useDeleteSubscriberMutation();
   const { deleteSuccessToast } = useContext(GlobalContext);
+
 
   const handleDelete = async (id: any) => {
     try {
@@ -19,15 +24,24 @@ export default function SubscriberTable() {
     }
   };
 
-  const [page, setPage] = useState(0);
   const handleNext = () => {
     setPage(page + 1);
+    setCurrentCount(currentCount + 5);
   };
 
   const handlePrev = () => {
     setPage(page - 1);
+    setCurrentCount(currentCount - 5);
   };
   console.log(page);
+
+  // useEffect(() => {
+  //   const fetchSubscriber = async () => {
+  //     const res = await axios.get("http://localhost:4000/api/subscriber");
+  //     console.log(res);
+  //   };
+  //   fetchSubscriber();
+  // }, []);
 
   return (
     <>
@@ -46,8 +60,8 @@ export default function SubscriberTable() {
             </tr>
           </thead>
           <tbody>
-            {subscribers &&
-              subscribers.map((subscriber: any, index: any) => (
+            {data && data.subscribers &&
+              data.subscribers.map((subscriber: any, index: any) => (
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
@@ -78,7 +92,7 @@ export default function SubscriberTable() {
                 Previous
               </a>
             </li>
-            <li className="page-item">
+            <li className={data && data.subscriberCount - 1 >= currentCount ? "page-item" : "custom_disable"}>
               <a
                 onClick={handleNext}
                 className="page-link rounded-0 h6 next_prev px-4 cp">

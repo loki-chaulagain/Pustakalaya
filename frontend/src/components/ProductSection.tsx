@@ -32,24 +32,24 @@ const ProductSection = ({ title }: any) => {
   };
 
   return (
-    <div className="container ">
-      <h4 className="text_color">{title}</h4>
+    <div className="container  ">
+      <h4 className="text_color ">{title}</h4>
       <hr className="my-0 mb-4 mt-2" />
-      <div className="row cursor_pointer pb-5">
-        <div className="row d-flex">
+      <div className=" cursor_pointer pb-5 m-0 ">
+        <div className="row p-0 d-flex">
           {categories &&
             categories.map((product: any, index: any) => (
               <div
                 key={index}
-                className="col-lg-4 col-xl-3 ">
+                className="col-12 col-sm-6 col-lg-4 col-xl-3  ">
                 <div className="product_card d-flex flex-column align-items-center  mb-4 gap-2 pb-3 ">
                   <Image
                     className=" no_selection cp"
                     src={demo}
-                    objectFit="scale-down"
+                    objectFit="cover"
                     alt="img"
-                    height={200}
-                    width={300}
+                    height={300}
+                    width={550}
                   />
                   <small className="text-muted"> Category Name</small>
                   <p className="h6 text_color mb-0 ">Apple iPad Mini G2356</p>

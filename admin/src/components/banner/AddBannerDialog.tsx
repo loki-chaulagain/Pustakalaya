@@ -23,17 +23,17 @@ export default function AddBannerDialog() {
     formState: { errors },
     reset,
   } = useForm();
-  const handleAllField:any = watch();
+  const handleAllField: any = watch();
 
   const createBannerHandler = async () => {
-   try {
-    createNewBanner(handleAllField);
-    createSuccessToast();
-    reset();
-    handleClose();
-   } catch (error) {
-    console.log(error);
-   }
+    try {
+      createNewBanner(handleAllField);
+      createSuccessToast();
+      reset();
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -80,6 +80,7 @@ export default function AddBannerDialog() {
               image
             </label>
             <input
+              type="file"
               className=" input_field_style form-control form-control-lg mb-0  border-0  rounded-0"
               {...register("image", { required: "image is required" })}
               placeholder="image"

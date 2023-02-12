@@ -15,18 +15,19 @@ export default function CategoriesSection() {
           categories.map((product: any, index) => (
             <div
               key={index}
-              className="col-4 mb-4">
+              className="col-12 col-sm-6 mb-4">
               <div className="row d-flex  m-0 p-0 align-items-center justify-content-between gap-4 category_card">
               <div className="col p-0  d-flex   ">
+                <div className="category_img_div">
+
                   <Image
                     className=" no_selection cp  "
                     src={tv}
                     objectFit="cover"
                     alt="img"
-                    
-                    height={140} 
-                    width={200}
+                    layout="fill"
                   />
+                </div>
                 </div>
 
                 <div className="col">

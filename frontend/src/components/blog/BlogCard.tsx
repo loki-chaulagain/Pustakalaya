@@ -22,7 +22,7 @@ const BlogCard = ({ blog }: any) => {
           <div className="except_image_wrapper px-2 pt-2">
             <div className="d-flex justify-content-between">
               <span className="cursor_pointer text_muted_level_1">
-                <span className="text_color_yellow fw-semibold">Author</span> : Gem Plasticrafts
+                <span className="text_color_yellow fw-semibold">Author</span> : पुस्तकालय
               </span>
               <span className="small text_muted_level_2">{format(blog.createdAt)}</span>
             </div>

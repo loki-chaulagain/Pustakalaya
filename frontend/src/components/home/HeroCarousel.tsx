@@ -10,11 +10,11 @@ import { useGetBannersQuery } from "../../redux/api/globalApi";
 const HeroCarousel = () => {
   const { data: banners, isLoading, isError } = useGetBannersQuery();
   if (isLoading) {
-    <div>Loading ...</div>;
+    <h1>Loading ...</h1>;
   }
 
   if (isError) {
-    <div>Error ...</div>;
+    <h1>Error ...</h1>;
   }
 
   return (

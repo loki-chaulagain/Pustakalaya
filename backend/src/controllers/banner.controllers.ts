@@ -1,6 +1,25 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../db";
 import { Banner } from "../entities/Banner";
+import { cloudinary } from "../utils/cloudinary";
+
+export const createBanner = async (req: Request, res: Response) => {
+  try {
+    let formData = {
+      ...req.body,
+    };
+    if (req.file) {
+      formData.image = req.file.path;
+      const upload = await cloudinary.uploader.upload(req.file.path);
+    }
+
+    const banner = AppDataSource.manager.create(Banner, formData);
+    const results = await AppDataSource.manager.save(Banner, banner);
+    return res.status(201).json(results);
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
 export const getBanners = async (req: Request, res: Response) => {
   try {
@@ -21,15 +40,25 @@ export const getBanner = async (req: Request, res: Response) => {
   }
 };
 
-export const createBanner = async (req: Request, res: Response) => {
-  try {
-    const banner = AppDataSource.manager.create(Banner, req.body);
-    const results = await AppDataSource.manager.save(Banner, banner);
-    return res.status(201).json(results);
-  } catch (error: any) {
-    return res.status(500).json({ message: error.message });
-  }
-};
+// export const createBanner = async (req: Request, res: Response) => {
+//   try {
+//     // let formData = {
+//     //   ...req.body,
+//     // };
+//     // if (req.file) {
+//     //   formData.image = req.file.path;
+//     //   uploadTocloudinary(req.file.path);
+//     // }
+
+//     // const newService = new Banner(data);
+//     console.log(req.body);
+//     const banner = AppDataSource.manager.create(Banner, req.body);
+//     const results = await AppDataSource.manager.save(Banner, banner);
+//     return res.status(201).json(results);
+//   } catch (error: any) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// };
 
 export const updateBanner = async (req: Request, res: Response) => {
   const id: any = req.query.id;

@@ -339,3 +339,7 @@ input::-webkit-input-placeholder {
   font-weight: 500 !important;
 }
 
+
+.custom_disable{
+  background-color: red !important;
+}

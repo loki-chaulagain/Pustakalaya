@@ -7,7 +7,10 @@ export class Product extends BaseEntity {
 
   @Column({ type: String })
   name!: string;
-
+  
+  @Column({ type: String })
+  image!: string;
+  
   @Column({ type: String })
   description!: string;
 
@@ -17,7 +20,7 @@ export class Product extends BaseEntity {
   @Column({ type: String })
   publishedYear!: string;
 
-  @Column({ type: Number })
+  @Column({ type: Number,nullable:true })
   categoryId!: number;
 
   @Column({ type: Number })
@@ -26,8 +29,6 @@ export class Product extends BaseEntity {
   @Column({ type: Number })
   pricePrevious!: number;
 
-  @Column({ type: String })
-  image!: string;
 
   @Column()
   isMostSelling!: string;
